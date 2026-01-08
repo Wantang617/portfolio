@@ -44,7 +44,7 @@
             padding: 0 20px;
         }
 
-        /* 返回按钮 - 修改为指向index.html */
+        /* 返回按钮 */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -428,7 +428,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- 返回按钮 - 修改为指向index.html -->
+        <!-- 返回按钮 -->
         <a href="index.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> 返回主页
         </a>
@@ -524,16 +524,16 @@
                 </div>
             </div>
 
-            <!-- 游戏演示视频 - B站版本 -->
+            <!-- 游戏演示视频 - 已更新为新视频链接 -->
             <div class="project-section-new">
                 <h2 class="section-title-new">游戏演示视频</h2>
                 
                 <div class="video-container">
-                    <!-- B站视频播放器 -->
+                    <!-- B站视频播放器 - 已更新为新视频 -->
                     <div class="video-wrapper">
                         <div class="bilibili-video-container">
                             <iframe 
-                                src="//player.bilibili.com/player.html?isOutside=true&aid=115851525097453&bvid=BV1cfquBsEer&cid=35235302888&p=1"
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856910584188&bvid=BV1rPiQBMEix&cid=35253059635&p=1"
                                 scrolling="no" 
                                 border="0" 
                                 frameborder="no" 
@@ -545,12 +545,12 @@
                         </div>
                     </div>
                     
-                    <!-- 视频信息栏 -->
+                    <!-- 视频信息栏 - 已更新为新视频链接 -->
                     <div class="video-info-bar">
                         <div>
-                            <i class="fab fa-bilibili"></i> 视频托管于Bilibili平台
+                            <i class="fab fa-bilibili"></i> 视频托管于Bilibili平台 - 游戏开发演示
                         </div>
-                        <a href="https://www.bilibili.com/video/BV1cfquBsEer" target="_blank">
+                        <a href="https://www.bilibili.com/video/BV1rPiQBMEix" target="_blank">
                             <i class="fas fa-external-link-alt"></i> 在B站打开
                         </a>
                     </div>
@@ -592,7 +592,7 @@
             
             if (bilibiliIframe) {
                 bilibiliIframe.onload = function() {
-                    console.log('B站视频加载完成');
+                    console.log('B站视频加载完成 - 新视频链接');
                     
                     // 可以在这里添加一些加载完成的交互效果
                     const videoContainer = document.querySelector('.bilibili-video-container');
@@ -608,10 +608,6 @@
                 
                 bilibiliIframe.onerror = function() {
                     console.warn('B站视频加载失败');
-                    // 如果是本地文件协议，显示提示（GitHub Pages不会触发）
-                    if (window.location.protocol === 'file:') {
-                        console.log('本地文件协议，B站视频无法播放');
-                    }
                 };
             }
             
@@ -619,14 +615,9 @@
             const bilibiliLink = document.querySelector('.video-info-bar a[href*="bilibili.com"]');
             if (bilibiliLink) {
                 bilibiliLink.addEventListener('click', function() {
-                    console.log('用户点击B站链接，前往视频页面');
+                    console.log('用户点击B站链接，前往新视频页面');
                     // 可以在这里添加统计代码
                 });
-            }
-
-            // GitHub Pages检测
-            if (window.location.hostname.includes('github.io')) {
-                console.log('正在GitHub Pages上运行，B站视频应该可以正常播放');
             }
         });
     </script>
