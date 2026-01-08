@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿野仙踪 - 飞跃秘境 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 - 修改为指向index.html */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 项目信息网格 */
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .info-column {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .info-subcontent {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 项目背景和介绍 */
+        .project-section-new {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .section-title-new {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title-new:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 游戏视频部分 */
+        .video-container {
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* B站视频容器 */
+        .bilibili-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .bilibili-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 视频信息栏 */
+        .video-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-info-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-info-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 技术栈标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 游戏机制展示 */
+        .game-mechanics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .mechanic-card {
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+        }
+
+        .mechanic-card:hover {
+            background: rgba(157, 78, 221, 0.12);
+            border-color: rgba(157, 78, 221, 0.4);
+        }
+
+        .mechanic-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .mechanic-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 1.8rem;
+            }
+            
+            .project-section-new {
+                padding: 25px;
+            }
+            
+            .game-mechanics {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .section-title-new {
+                font-size: 1.6rem;
+            }
+            
+            .info-label {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tags {
+                gap: 10px;
+            }
+            
+            .tech-tag {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 - 修改为指向index.html -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 项目头部 - 新格式 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">绿野仙踪 – 飞跃秘境</h1>
+            <h2 class="project-subtitle-main">THE WIZARD OF OZ - LEAP WONDERLAND GAME DEVELOPMENT</h2>
+            
+            <!-- 项目信息网格 -->
+            <div class="project-info-grid">
+                <div class="info-column">
+                    <div class="info-label">TIME</div>
+                    <div class="info-content">2025.06 – 2025.07</div>
+                    <div class="info-subcontent">2个月开发周期</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">PLATFORM</div>
+                    <div class="info-content">PC / Windows</div>
+                    <div class="info-subcontent">Unity引擎开发</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">ROLE</div>
+                    <div class="info-content">游戏开发团队项目</div>
+                    <div class="info-subcontent">组长，负责核心玩法与性能</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目内容 -->
+        <div class="project-content">
+            <!-- 项目背景 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目背景</h2>
+                <div class="section-content">
+                    <p>随着独立游戏市场的不断发展，平台跑酷类游戏因其简单易上手且富有挑战性而受到玩家喜爱。同时，环保和可持续的生活方式也受到年轻人的追捧，因此我们将游戏主题与绿色生态相结合，打造一款富有挑战性和教育意义的跑酷游戏。</p>
+                    <p>游戏开发过程中，我们注重操作反馈与关卡节奏，力求为玩家提供流畅的游戏体验。项目历时2个月完成，涵盖完整的游戏开发流程，从原型设计到最终测试。</p>
+                </div>
+            </div>
+
+            <!-- 项目介绍 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目介绍</h2>
+                <div class="section-content">
+                    <p>《绿野仙踪 – 飞跃秘境》是一款包含三个不同难度关卡的跑酷游戏。玩家通过控制角色在木桥连接的第一关、包含吊桥和移动船的第二关，以及增加飞行道具的第三关中跑酷，收集金币并使用道具，最终通关获得宝箱。</p>
+                    <p>每一关都需要收集特定数量的金币才能打开通往下一关的门，若不慎掉落水中，玩家将回到上一个出发点。游戏的核心设计理念是"易学难精"，通过直观的操作方式和渐进式的难度曲线，让玩家在享受流畅游戏体验的同时，也能感受到挑战的乐趣。</p>
+                </div>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unity 3D</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">跑酷游戏</span>
+                    <span class="tech-tag">关卡设计</span>
+                    <span class="tech-tag">道具系统</span>
+                    <span class="tech-tag">动画系统</span>
+                    <span class="tech-tag">UI设计</span>
+                </div>
+            </div>
+
+            <!-- 核心游戏机制 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">核心游戏机制</h2>
+                <div class="game-mechanics">
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">多难度关卡</h3>
+                        <p class="mechanic-description">
+                            游戏包含三个逐渐提升难度的关卡：第一关为木桥场景，第二关加入吊桥与移动船，第三关增加飞行道具与复杂地形。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">金币收集机制</h3>
+                        <p class="mechanic-description">
+                            每关需收集指定数量的金币才能开启下一关大门，鼓励玩家探索与重复挑战。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">道具系统</h3>
+                        <p class="mechanic-description">
+                            玩家可使用多种道具辅助通关，如飞行道具、加速道具等，提升游戏策略性与趣味性。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">掉落重置机制</h3>
+                        <p class="mechanic-description">
+                            若角色掉落水中，将返回上一个检查点或出发点，保持挑战的公平性与连贯性。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏演示视频 - B站版本 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">游戏演示视频</h2>
+                
+                <div class="video-container">
+                    <!-- B站视频播放器 -->
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115851525097453&bvid=BV1cfquBsEer&cid=35235302888&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 视频托管于Bilibili平台
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV1cfquBsEer" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目成果 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目成果</h2>
+                <div class="section-content">
+                    <p>• 完成包含三个关卡的完整可玩原型</p>
+                    <p>• 实现金币收集、道具使用、关卡门解锁等核心机制</p>
+                    <p>• 设计直观的游戏界面与流畅的角色控制</p>
+                    <p>• 团队协作高效，按时完成各阶段开发目标</p>
+                    <p>• 获得课程项目展示优秀评价</p>
+                    <p>• 积累了完整的游戏开发流程经验</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 视频加载完成提示
+        document.addEventListener('DOMContentLoaded', function() {
+            const bilibiliIframe = document.querySelector('.bilibili-video-container iframe');
+            
+            if (bilibiliIframe) {
+                bilibiliIframe.onload = function() {
+                    console.log('B站视频加载完成');
+                    
+                    // 可以在这里添加一些加载完成的交互效果
+                    const videoContainer = document.querySelector('.bilibili-video-container');
+                    videoContainer.style.boxShadow = '0 0 20px rgba(157, 78, 221, 0.3)';
+                    
+                    // 添加B站图标特效
+                    const bilibiliIcon = document.querySelector('.fa-bilibili');
+                    if (bilibiliIcon) {
+                        bilibiliIcon.style.color = '#fb7299';
+                        bilibiliIcon.style.transition = 'color 0.5s';
+                    }
+                };
+                
+                bilibiliIframe.onerror = function() {
+                    console.warn('B站视频加载失败');
+                    // 如果是本地文件协议，显示提示（GitHub Pages不会触发）
+                    if (window.location.protocol === 'file:') {
+                        console.log('本地文件协议，B站视频无法播放');
+                    }
+                };
+            }
+            
+            // 为B站链接添加点击统计
+            const bilibiliLink = document.querySelector('.video-info-bar a[href*="bilibili.com"]');
+            if (bilibiliLink) {
+                bilibiliLink.addEventListener('click', function() {
+                    console.log('用户点击B站链接，前往视频页面');
+                    // 可以在这里添加统计代码
+                });
+            }
+
+            // GitHub Pages检测
+            if (window.location.hostname.includes('github.io')) {
+                console.log('正在GitHub Pages上运行，B站视频应该可以正常播放');
+            }
+        });
+    </script>
+</body>
+</html>

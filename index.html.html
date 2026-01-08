@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luo Yuqiao | 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            --gradient-vertical: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: var(--text-primary);
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* 首页样式 - 横排版 */
+        .home-section {
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 左侧内容区域 - 横排版 */
+        .left-container {
+            width: 50%;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* 姓名标题 - 横排版 */
+        .name-title {
+            margin-bottom: 40px;
+        }
+
+        .name-title h1 {
+            font-size: 5.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--text-primary);
+            cursor: default;
+        }
+
+        /* 精确悬停效果 - 每行单独处理 */
+        .name-line {
+            display: block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        /* 每行的精确悬停区域 */
+        .name-line:hover {
+            color: var(--primary-color);
+            transform: scale(1.08) translateX(10px);
+            text-shadow: 0 0 15px rgba(157, 78, 221, 0.8);
+        }
+
+        /* 专业标签 - 缩小字体并在一行显示 */
+        .specialties {
+            display: flex;
+            flex-wrap: nowrap; /* 确保不换行 */
+            gap: 15px;
+            margin-top: 20px;
+            align-items: center;
+            width: 100%;
+            max-width: 480px; /* 限制最大宽度不超过YUQIAO字母长度 */
+        }
+
+        .specialty-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem; /* 缩小字体大小 */
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap; /* 防止文字换行 */
+            flex-shrink: 0; /* 防止标签被压缩 */
+        }
+
+        .specialty-tag:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4);
+        }
+
+        /* 右侧粒子效果区域 - 增强效果 */
+        .right-container {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(157, 78, 221, 0.1) 0%, transparent 60%);
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 粒子效果增强覆盖层 */
+        .particles-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(199, 125, 255, 0.1) 0%, transparent 50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* 修改后的循环滚动Portfolio单词条 */
+        .portfolio-marquee {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            height: 80px; /* 增加高度以适应单词 */
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .portfolio-track {
+            display: flex;
+            position: absolute;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 25s linear infinite;
+            gap: 60px; /* 增加单词间距 */
+            padding: 0 30px; /* 增加内边距 */
+        }
+
+        .portfolio-word {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.12);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            padding: 10px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            background: transparent;
+            border: 2px solid transparent;
+            min-width: 280px; /* 确保每个单词有足够宽度 */
+            text-align: center;
+        }
+
+        /* 单词悬停效果 - 整个单词高亮 */
+        .portfolio-word:hover {
+            color: var(--primary-color);
+            background: rgba(157, 78, 221, 0.1);
+            transform: translateY(-8px) scale(1.05);
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.7);
+            border-color: rgba(157, 78, 221, 0.3);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.3);
+        }
+
+        /* 鼠标悬停时暂停动画 */
+        .portfolio-marquee:hover .portfolio-track {
+            animation-play-state: paused;
+        }
+
+        /* 活动状态 */
+        .portfolio-word.active {
+            color: var(--primary-color);
+            text-shadow: 0 0 25px rgba(157, 78, 221, 0.9);
+            background: rgba(157, 78, 221, 0.08);
+            border-color: rgba(157, 78, 221, 0.4);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* 作品展示页样式 - 微信公众号风格横版分类目录 */
+        .categories {
+            padding: 100px 0 80px;
+            position: relative;
+            background-color: rgba(5, 5, 10, 0.95);
+        }
+
+        .categories:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .categories-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3.5rem;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .category-row {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* 目录卡片 */
+        .category-card {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            height: 140px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .category-image-container {
+            flex: 0 0 40%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+        }
+
+        /* 渐变过渡效果 */
+        .category-gradient {
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 60px;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(18, 18, 30, 0) 0%, rgba(18, 18, 30, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .category-content {
+            flex: 1;
+            padding: 20px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(90deg, rgba(25, 25, 40, 0.7) 0%, rgba(18, 18, 30, 0.9) 100%);
+        }
+
+        .category-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .category-content h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -8px;
+            left: 0;
+            transition: width 0.4s;
+            border-radius: 2px;
+        }
+
+        .category-card:hover .category-content h3:after {
+            width: 80px;
+        }
+
+        .category-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .category-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .category-link:hover i {
+            transform: translateX(8px);
+        }
+
+        .category-number {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: rgba(157, 78, 221, 0.1);
+            z-index: 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* 作品集部分 - 重新设计为三个大分类 */
+        .portfolio-section {
+            padding: 100px 0;
+            position: relative;
+            min-height: 80vh;
+        }
+
+        .portfolio-section:nth-child(odd):before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(157, 78, 221, 0.06) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .portfolio-section:nth-child(even):before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(199, 125, 255, 0.06) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* 分类项目容器 */
+        .category-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* 项目卡片 - 重新设计 */
+        .project-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 320px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .project-item-img {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .project-item:hover .project-item-img img {
+            transform: scale(1.1);
+        }
+
+        .project-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .project-item-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .project-item-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .project-item-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .project-item-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-item-link:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .project-item-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4);
+            transition: all 0.4s;
+            z-index: 99;
+            display: none;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.6);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1100px) {
+            .category-card {
+                height: 130px;
+            }
+            
+            .category-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .category-number {
+                font-size: 2.5rem;
+            }
+            
+            .name-title h1 {
+                font-size: 4.5rem;
+            }
+            
+            .left-container {
+                padding: 60px;
+            }
+            
+            .portfolio-word {
+                font-size: 2.8rem;
+                min-width: 240px;
+            }
+            
+            .project-item {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .home-section {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .left-container, .right-container {
+                width: 100%;
+            }
+            
+            .left-container {
+                padding: 50px 40px;
+                min-height: 70vh;
+                order: 2;
+            }
+            
+            .right-container {
+                height: 30vh;
+                order: 1;
+            }
+            
+            .name-title h1 {
+                font-size: 4rem;
+            }
+            
+            .specialties {
+                max-width: 100%;
+                margin-top: 30px;
+                justify-content: flex-start;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-marquee {
+                bottom: 30px;
+                height: 70px;
+            }
+            
+            .portfolio-word {
+                font-size: 2.5rem;
+                min-width: 220px;
+                padding: 8px 20px;
+            }
+            
+            .portfolio-track {
+                gap: 40px;
+            }
+            
+            .category-projects {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-container {
+                padding: 40px 30px;
+            }
+            
+            .name-title h1 {
+                font-size: 3.2rem;
+            }
+            
+            .category-card {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .category-image-container {
+                flex: 0 0 180px;
+            }
+            
+            .category-gradient {
+                display: none;
+            }
+            
+            .category-number {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                font-size: 2.2rem;
+                margin-top: 10px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .specialty-tag {
+                font-size: 0.9rem;
+                padding: 7px 18px;
+            }
+            
+            .portfolio-word {
+                font-size: 2.2rem;
+                min-width: 200px;
+                padding: 6px 18px;
+            }
+            
+            .portfolio-track {
+                gap: 30px;
+            }
+            
+            .category-projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-item {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .specialties {
+                flex-wrap: wrap; /* 在小屏幕上允许换行 */
+                gap: 10px;
+            }
+            
+            .specialty-tag {
+                font-size: 0.85rem;
+                padding: 6px 15px;
+            }
+            
+            .portfolio-word {
+                font-size: 1.8rem;
+                min-width: 180px;
+                padding: 5px 15px;
+            }
+            
+            .portfolio-track {
+                gap: 25px;
+            }
+            
+            .portfolio-marquee {
+                height: 60px;
+            }
+            
+            .project-item {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .left-container {
+                padding: 30px 20px;
+            }
+            
+            .name-title h1 {
+                font-size: 2.8rem;
+            }
+            
+            .category-content {
+                padding: 20px;
+            }
+            
+            .category-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .category-number {
+                font-size: 1.8rem;
+            }
+            
+            .specialty-tag {
+                font-size: 0.8rem;
+                padding: 5px 12px;
+            }
+            
+            .portfolio-word {
+                font-size: 1.6rem;
+                min-width: 160px;
+                padding: 4px 12px;
+                letter-spacing: 2px;
+            }
+            
+            .portfolio-track {
+                gap: 20px;
+            }
+            
+            .project-item {
+                height: 250px;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .delay-5 {
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 首页 -->
+    <section class="home-section" id="home">
+        <!-- 左侧内容区域 - 横排版 -->
+        <div class="left-container">
+            <!-- 姓名标题 - 横排版 -->
+            <div class="name-title">
+                <h1>
+                    <div class="fade-in-up">
+                        <span class="name-line">HELLO</span>
+                    </div>
+                    <div class="fade-in-up delay-1">
+                        <span class="name-line">I'M</span>
+                    </div>
+                    <div class="fade-in-up delay-2">
+                        <span class="name-line">LUO</span>
+                    </div>
+                    <div class="fade-in-up delay-3">
+                        <span class="name-line">YUQIAO</span>
+                    </div>
+                </h1>
+            </div>
+            
+            <!-- 专业标签 - 缩小字体并在一行显示 -->
+            <div class="specialties">
+                <a href="#unity-games" class="specialty-tag fade-in-up delay-4">Unity游戏</a>
+                <a href="#frontend-dev" class="specialty-tag fade-in-up delay-4">前端开发</a>
+                <a href="#design-media" class="specialty-tag fade-in-up delay-5">设计与媒体</a>
+            </div>
+        </div>
+        
+        <!-- 右侧粒子效果区域 -->
+        <div class="right-container">
+            <canvas id="particles-canvas"></canvas>
+            <div class="particles-overlay"></div>
+        </div>
+        
+        <!-- 修改后的循环滚动的Portfolio单词条 -->
+        <div class="portfolio-marquee">
+            <div class="portfolio-track" id="portfolio-track">
+                <!-- Portfolio单词将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示页 -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="categories-title">作品展示</h2>
+            
+            <div class="category-row">
+                <!-- 青铜的呼唤 - 01 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="青铜的呼唤" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>青铜的呼唤</h3>
+                        <a href="bronze-call.html" class="category-link">查看项目详情 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">01</div>
+                    </div>
+                </div>
+
+                <!-- 飞跃游戏 - 02 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="飞跃游戏" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>飞跃</h3>
+                        <a href="leap-game.html" class="category-link">查看项目详情 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">02</div>
+                    </div>
+                </div>
+
+                <!-- 房产App - 03 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="房产App" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>房产App</h3>
+                        <a href="real-estate-app.html" class="category-link">查看项目详情 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">03</div>
+                    </div>
+                </div>
+
+                <!-- 智慧旅游公共平台 - 04 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="智慧旅游公共平台" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>智慧旅游公共平台</h3>
+                        <a href="tourism-platform.html" class="category-link">查看项目详情 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">04</div>
+                    </div>
+                </div>
+
+                <!-- 平面设计 - 05 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="平面设计" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>平面设计</h3>
+                        <a href="graphic-design.html" class="category-link">查看设计作品 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">05</div>
+                    </div>
+                </div>
+
+                <!-- 视频剪辑 - 06 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="视频剪辑" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>视频剪辑</h3>
+                        <a href="video-editing.html" class="category-link">查看视频作品 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">06</div>
+                    </div>
+                </div>
+
+                <!-- 动画制作 - 07 -->
+                <div class="category-card">
+                    <div class="category-image-container">
+                        <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="动画制作" class="category-image">
+                        <div class="category-overlay"></div>
+                    </div>
+                    <div class="category-gradient"></div>
+                    <div class="category-content">
+                        <h3>动画制作</h3>
+                        <a href="animation-production.html" class="category-link">查看动画作品 <i class="fas fa-arrow-right"></i></a>
+                        <div class="category-number">07</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    这里展示了我过去完成的主要作品，涵盖游戏开发、应用设计、平台开发、平面设计与视频剪辑等多个领域。每个项目都代表了我对创意表达与技术实现的探索与实践。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unity游戏作品区 -->
+    <section class="portfolio-section" id="unity-games">
+        <div class="container">
+            <h2 class="section-title">Unity游戏作品</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                以下是我使用Unity引擎开发的游戏作品，涵盖了角色扮演、平台跳跃等不同类型的游戏项目。
+            </p>
+            
+            <div class="category-projects">
+                <!-- 青铜的呼唤项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="青铜的呼唤">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">青铜的呼唤</h3>
+                        <p class="project-item-description">一款基于Unity引擎开发的角色扮演游戏，融合古代青铜文明元素，打造沉浸式的历史冒险体验。</p>
+                        <a href="bronze-call.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 飞跃游戏项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="飞跃游戏">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">飞跃</h3>
+                        <p class="project-item-description">一款充满创意与挑战的Unity平台跳跃游戏，玩家操控角色穿越奇幻世界，体验流畅的动作机制。</p>
+                        <a href="leap-game.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 前端开发作品区 -->
+    <section class="portfolio-section" id="frontend-dev">
+        <div class="container">
+            <h2 class="section-title">前端开发作品</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                以下是我开发的前端应用与平台项目，涵盖了移动应用、Web平台和用户界面设计等多个方向。
+            </p>
+            
+            <div class="category-projects">
+                <!-- 房产App项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="房产App">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">房产App</h3>
+                        <p class="project-item-description">一款现代化的房产交易与租赁应用程序，提供直观的用户界面、3D房源展示和智能匹配功能。</p>
+                        <a href="real-estate-app.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 智慧旅游公共平台项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="智慧旅游公共平台">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">智慧旅游公共平台</h3>
+                        <p class="project-item-description">一款综合性旅游服务平台，整合景点推荐、路线规划、票务预订和实时导航等功能。</p>
+                        <a href="tourism-platform.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 设计与媒体作品区 -->
+    <section class="portfolio-section" id="design-media">
+        <div class="container">
+            <h2 class="section-title">设计与媒体作品</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                以下是我的设计与媒体创作作品，涵盖平面设计、视频剪辑和动画制作等多个创意领域。
+            </p>
+            
+            <div class="category-projects">
+                <!-- 平面设计项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="平面设计">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">平面设计</h3>
+                        <p class="project-item-description">涵盖品牌视觉识别、海报设计、宣传物料等多元领域的平面设计作品，注重创意表达与视觉传达。</p>
+                        <a href="graphic-design.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 视频剪辑项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="视频剪辑">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">视频剪辑</h3>
+                        <p class="project-item-description">专业的视频后期制作与剪辑作品，包括宣传片、纪录片、短视频内容等，擅长节奏把控与情感叙事。</p>
+                        <a href="video-editing.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 动画制作项目 -->
+                <div class="project-item">
+                    <div class="project-item-img">
+                        <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="动画制作">
+                        <div class="project-item-overlay"></div>
+                    </div>
+                    <div class="project-item-content">
+                        <h3 class="project-item-title">动画制作</h3>
+                        <p class="project-item-description">涵盖2D/3D动画制作、角色设计、故事板创作等，注重动画流畅性和视觉表现力。</p>
+                        <a href="animation-production.html" class="project-item-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回顶部按钮 -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" id="social-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" id="social-github"><i class="fab fa-github"></i></a>
+                <a href="#" id="social-website"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com" id="social-email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© <span id="current-year">2023</span> <span id="footer-name">LUO YUQIAO</span>. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 用户数据
+        const userData = {
+            name: "LUO YUQIAO",
+            email: "luo.yuqiao@example.com",
+            linkedin: "#",
+            github: "#",
+            website: "#"
+        };
+
+        // 增强的粒子系统
+        class ParticleSystem {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: -100, y: -100, radius: 150 };
+                this.colors = ['#9d4edd', '#7b2cbf', '#c77dff', '#e0aaff', '#ffffff'];
+                
+                this.init();
+                this.animate();
+                
+                // 鼠标移动事件
+                window.addEventListener('mousemove', (e) => {
+                    // 只更新鼠标位置，不立即影响粒子
+                    const rect = canvas.getBoundingClientRect();
+                    this.mouse.x = e.clientX - rect.left;
+                    this.mouse.y = e.clientY - rect.top;
+                });
+                
+                // 鼠标离开窗口
+                window.addEventListener('mouseout', () => {
+                    this.mouse.x = -100;
+                    this.mouse.y = -100;
+                });
+                
+                // 窗口大小调整
+                window.addEventListener('resize', () => {
+                    this.resizeCanvas();
+                });
+            }
+            
+            init() {
+                this.resizeCanvas();
+                this.createParticles();
+            }
+            
+            resizeCanvas() {
+                this.canvas.width = this.canvas.offsetWidth;
+                this.canvas.height = this.canvas.offsetHeight;
+                this.createParticles(); // 重新创建粒子以适应新尺寸
+            }
+            
+            createParticles() {
+                this.particles = [];
+                // 增加粒子数量，使效果更明显
+                const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 8000);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    // 创建不同大小的粒子
+                    const size = Math.random() * 4 + 1; // 增大粒子大小
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: size,
+                        speedX: Math.random() * 1 - 0.5,
+                        speedY: Math.random() * 1 - 0.5,
+                        color: this.colors[Math.floor(Math.random() * this.colors.length)],
+                        opacity: Math.random() * 0.7 + 0.3, // 提高透明度
+                        originalX: 0,
+                        originalY: 0,
+                        glow: size > 2.5 // 较大的粒子有发光效果
+                    });
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 添加背景光晕效果
+                const gradient = this.ctx.createRadialGradient(
+                    this.canvas.width * 0.7, this.canvas.height * 0.3, 0,
+                    this.canvas.width * 0.7, this.canvas.height * 0.3, this.canvas.width * 0.5
+                );
+                gradient.addColorStop(0, 'rgba(157, 78, 221, 0.1)');
+                gradient.addColorStop(1, 'rgba(157, 78, 221, 0)');
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 更新和绘制粒子
+                for (let i = 0; i < this.particles.length; i++) {
+                    const p = this.particles[i];
+                    
+                    // 存储原始位置用于回弹
+                    if (!p.originalX) p.originalX = p.x;
+                    if (!p.originalY) p.originalY = p.y;
+                    
+                    // 鼠标互动 - 更精确的距离检测
+                    const dx = this.mouse.x - p.x;
+                    const dy = this.mouse.y - p.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // 增强鼠标互动效果
+                    if (distance < this.mouse.radius) {
+                        const force = (this.mouse.radius - distance) / this.mouse.radius;
+                        const angle = Math.atan2(dy, dx);
+                        
+                        // 粒子被鼠标推开
+                        p.x -= Math.cos(angle) * force * 12;
+                        p.y -= Math.sin(angle) * force * 12;
+                    } else {
+                        // 缓慢回到原始位置
+                        const returnSpeed = 0.03;
+                        p.x += (p.originalX - p.x) * returnSpeed;
+                        p.y += (p.originalY - p.y) * returnSpeed;
+                    }
+                    
+                    // 自然移动
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    
+                    // 边界检查
+                    if (p.x < 0 || p.x > this.canvas.width) p.speedX *= -1;
+                    if (p.y < 0 || p.y > this.canvas.height) p.speedY *= -1;
+                    
+                    // 确保粒子不会飞出画布
+                    p.x = Math.max(0, Math.min(this.canvas.width, p.x));
+                    p.y = Math.max(0, Math.min(this.canvas.height, p.y));
+                    
+                    // 绘制粒子发光效果
+                    if (p.glow) {
+                        const glowGradient = this.ctx.createRadialGradient(
+                            p.x, p.y, 0,
+                            p.x, p.y, p.size * 3
+                        );
+                        glowGradient.addColorStop(0, p.color);
+                        glowGradient.addColorStop(1, 'rgba(157, 78, 221, 0)');
+                        
+                        this.ctx.beginPath();
+                        this.ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+                        this.ctx.fillStyle = glowGradient;
+                        this.ctx.globalAlpha = p.opacity * 0.3;
+                        this.ctx.fill();
+                    }
+                    
+                    // 绘制粒子
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = p.color;
+                    this.ctx.globalAlpha = p.opacity;
+                    this.ctx.fill();
+                    
+                    // 绘制粒子间的连线 - 增强效果
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const p2 = this.particles[j];
+                        const dx2 = p.x - p2.x;
+                        const dy2 = p.y - p2.y;
+                        const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                        
+                        if (distance2 < 120) { // 增加连接距离
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = p.color;
+                            this.ctx.globalAlpha = 0.15 * (1 - distance2 / 120);
+                            this.ctx.lineWidth = 1;
+                            this.ctx.moveTo(p.x, p.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+                
+                // 恢复透明度
+                this.ctx.globalAlpha = 1;
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // 创建循环滚动的Portfolio单词 - 修改后的版本
+        function createPortfolioMarquee() {
+            const track = document.getElementById('portfolio-track');
+            const word = "PORTFOLIO";
+            
+            // 创建多个副本以实现无缝循环 - 增加数量确保无缝
+            for (let i = 0; i < 12; i++) {
+                const wordElement = document.createElement('span');
+                wordElement.className = 'portfolio-word';
+                wordElement.textContent = word;
+                wordElement.setAttribute('data-index', i);
+                
+                // 添加单词悬停效果
+                wordElement.addEventListener('mouseenter', function() {
+                    this.classList.add('active');
+                });
+                
+                wordElement.addEventListener('mouseleave', function() {
+                    this.classList.remove('active');
+                });
+                
+                // 添加单词点击事件，滚动到作品目录
+                wordElement.addEventListener('click', function() {
+                    const categoriesSection = document.getElementById('categories');
+                    window.scrollTo({
+                        top: categoriesSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                track.appendChild(wordElement);
+            }
+            
+            // 添加随机激活效果
+            setInterval(() => {
+                const words = document.querySelectorAll('.portfolio-word');
+                const randomIndex = Math.floor(Math.random() * words.length);
+                
+                // 短暂激活一个随机单词
+                words[randomIndex].classList.add('active');
+                setTimeout(() => {
+                    words[randomIndex].classList.remove('active');
+                }, 800);
+            }, 3000);
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化粒子系统
+            const canvas = document.getElementById('particles-canvas');
+            new ParticleSystem(canvas);
+            
+            // 创建循环滚动的Portfolio单词
+            createPortfolioMarquee();
+            
+            // 设置个人信息
+            document.getElementById('footer-name').textContent = userData.name;
+            
+            // 设置当前年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // 设置社交媒体链接
+            document.getElementById('social-linkedin').href = userData.linkedin;
+            document.getElementById('social-github').href = userData.github;
+            document.getElementById('social-website').href = userData.website;
+            document.getElementById('social-email').href = `mailto:${userData.email}`;
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    if(targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    // 对于外部链接，浏览器会正常跳转
+                });
+            });
+            
+            // 显示/隐藏返回顶部按钮
+            window.addEventListener('scroll', function() {
+                const backToTopBtn = document.querySelector('.back-to-top');
+                if (window.scrollY > 500) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            
+            // 添加页面加载动画
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in-up').forEach(el => {
+                    el.style.opacity = '1';
+                });
+            }, 100);
+            
+            // 精确悬停效果 - 鼠标必须悬停在文字上才会触发
+            const nameLines = document.querySelectorAll('.name-line');
+            nameLines.forEach(line => {
+                line.addEventListener('mouseenter', function() {
+                    this.style.color = '#9d4edd';
+                    this.style.transform = 'scale(1.08) translateX(10px)';
+                    this.style.textShadow = '0 0 15px rgba(157, 78, 221, 0.8)';
+                });
+                
+                line.addEventListener('mouseleave', function() {
+                    this.style.color = '#ffffff';
+                    this.style.transform = 'scale(1) translateX(0)';
+                    this.style.textShadow = 'none';
+                });
+            });
+            
+            // 专业标签点击事件
+            document.querySelectorAll('.specialty-tag').forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
