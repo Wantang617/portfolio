@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平面设计作品集 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 - 与首页保持一致 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 项目头部 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 项目信息网格 - 修改为2列 */
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .info-column {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .info-subcontent {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 项目内容部分 */
+        .project-section-new {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .section-title-new {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title-new:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 技术栈标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 平面设计分类展示 */
+        .design-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        /* 设计分类链接样式 */
+        .design-category-link {
+            text-decoration: none;
+            display: block;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .design-category {
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .design-category-link:hover .design-category {
+            background: rgba(157, 78, 221, 0.12);
+            border-color: rgba(157, 78, 221, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .design-category-link:hover {
+            text-decoration: none;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* 设计工具展示 */
+        .design-tools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .tool-item:hover {
+            background: rgba(157, 78, 221, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .tool-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .design-categories {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 1.8rem;
+            }
+            
+            .project-section-new {
+                padding: 25px;
+            }
+            
+            .design-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .design-tools {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .section-title-new {
+                font-size: 1.6rem;
+            }
+            
+            .info-label {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tags {
+                gap: 10px;
+            }
+            
+            .tech-tag {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .tool-item {
+                min-width: 100px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 项目头部 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">平面设计作品集</h1>
+            <h2 class="project-subtitle-main">GRAPHIC DESIGN PORTFOLIO</h2>
+            
+            <!-- 项目信息网格 - 修改为2列 -->
+            <div class="project-info-grid">
+                <div class="info-column">
+                    <div class="info-label">TIME</div>
+                    <div class="info-content">2024 - 2026</div>
+                    <div class="info-subcontent">持续更新中</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">CATEGORIES</div>
+                    <div class="info-content">6 个分类</div>
+                    <div class="info-subcontent">15 个作品</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目内容 -->
+        <div class="project-content">
+            <!-- 设计简介 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">设计理念</h2>
+                <div class="section-content">
+                    <p>我的平面设计作品注重视觉传达的有效性与美学表达的平衡。在设计过程中，我致力于将设计理念、目标受众和传播媒介三者有机结合，创造出既具有视觉吸引力又能有效传递信息的作品。</p>
+                    <p>从Banner设计到印刷品制作，从数字媒体到传统媒介，我注重每一个设计细节，确保作品在不同平台和场景下都能保持一致的视觉品质和识别度。</p>
+                </div>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">视觉识别</span>
+                    <span class="tech-tag">印刷设计</span>
+                    <span class="tech-tag">UI/UX设计</span>
+                    <span class="tech-tag">排版设计</span>
+                    <span class="tech-tag">色彩理论</span>
+                </div>
+            </div>
+
+            <!-- 设计分类展示 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">设计分类</h2>
+                <p class="section-content">我的平面设计作品涵盖多个领域，每个领域都有其独特的设计挑战和创意表达方式。</p>
+                
+                <div class="design-categories">
+                    <!-- Banner设计 -->
+                    <a href="banner-design.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h3 class="category-title">Banner设计</h3>
+                            <p class="category-description">专注于网页和移动端的横幅广告设计，强调视觉冲击力和信息传递效率，适配多种屏幕尺寸和平台要求。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 2个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2026年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 报纸设计 -->
+                    <a href="newspaper-design.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <h3 class="category-title">报纸设计</h3>
+                            <p class="category-description">传统印刷媒介的设计创作，注重版面布局、字体搭配和视觉层次，提升阅读体验和信息传达效果。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 1个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2026年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 海报设计 -->
+                    <a href="poster-design.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-theater-masks"></i>
+                            </div>
+                            <h3 class="category-title">海报设计</h3>
+                            <p class="category-description">活动宣传与信息发布的海报创作，结合创意构图、色彩搭配和文案设计，吸引目标受众注意力。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 4个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2026年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 三星堆IP设计 -->
+                    <a href="sanxingdui-ip.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <h3 class="category-title">三星堆IP设计</h3>
+                            <p class="category-description">基于三星堆文化遗产的IP形象和衍生品设计，融合传统元素与现代审美，打造文化创意产品。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 1个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2025年6月</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 三折页设计 -->
+                    <a href="brochure-design.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="category-title">三折页设计</h3>
+                            <p class="category-description">宣传册和产品介绍的三折页设计，注重信息层次和视觉引导，在有限空间内高效传递核心内容。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 1个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2026年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 推送设计 -->
+                    <a href="push-design.html" class="design-category-link">
+                        <div class="design-category">
+                            <div class="category-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h3 class="category-title">推送设计</h3>
+                            <p class="category-description">社交媒体和移动应用的推送通知设计，强调简洁性、吸引力和一致性，提升用户参与度。</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-folder"></i> 6个作品</span>
+                                <span><i class="fas fa-calendar"></i> 2026年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 设计工具 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">设计工具</h2>
+                <p class="section-content">我熟练使用行业标准设计工具，能够高效完成从概念到成品的整个设计流程。</p>
+                
+                <div class="design-tools">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <div class="tool-name">Illustrator</div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="tool-name">Photoshop</div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="tool-name">InDesign</div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="tool-name">Figma</div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="tool-name">Blender</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 设计流程 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">设计流程</h2>
+                <div class="section-content">
+                    <p>我的设计流程遵循系统化的方法，确保每个项目都能达到预期的效果：</p>
+                    <p>1. <strong>需求分析</strong>：深入了解项目目标、目标受众和设计定位</p>
+                    <p>2. <strong>概念构思</strong>：进行头脑风暴，探索多种创意方向和视觉风格</p>
+                    <p>3. <strong>草图绘制</strong>：将概念转化为初步草图，确定基本布局和元素</p>
+                    <p>4. <strong>数字设计</strong>：使用专业工具将草图转化为精细的数字设计稿</p>
+                    <p>5. <strong>反馈迭代</strong>：与客户或团队沟通，根据反馈进行设计调整和优化</p>
+                    <p>6. <strong>最终交付</strong>：准备适配不同平台和媒介的最终文件，确保设计的一致性</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // GitHub Pages检测
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hostname.includes('github.io')) {
+                console.log('正在GitHub Pages上运行，平面设计作品集页面已加载');
+            }
+            
+            // 为所有设计类别添加悬停效果
+            const designCategories = document.querySelectorAll('.design-category');
+            designCategories.forEach(category => {
+                category.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                category.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

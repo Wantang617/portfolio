@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报纸设计作品 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 大标题 */
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* 作品展示 */
+        .works-container {
+            max-width: 1000px;
+            margin: 0 auto 80px;
+        }
+
+        .work-item {
+            margin-bottom: 60px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .work-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
+
+        /* 报纸页面展示 - 单列垂直布局 */
+        .newspaper-pages {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .newspaper-page {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .page-label {
+            padding: 15px;
+            background: rgba(157, 78, 221, 0.1);
+            color: var(--accent-color);
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .newspaper-image-container {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* 修改报纸图片样式 - 宽度100%，与文本对齐 */
+        .newspaper-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .work-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        /* 导航箭头 */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-link i {
+            transition: transform 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .nav-link.next:hover i {
+            transform: translateX(5px);
+        }
+
+        .nav-link.next {
+            margin-left: auto;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 40px 0 25px;
+            text-align: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .work-item {
+                padding: 20px;
+            }
+            
+            .work-title {
+                font-size: 1.5rem;
+            }
+            
+            .work-description {
+                font-size: 1rem;
+            }
+            
+            .newspaper-image-container {
+                padding: 20px;
+            }
+            
+            .newspaper-pages {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-navigation {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .nav-link.next {
+                margin-left: 0;
+            }
+            
+            .newspaper-image-container {
+                padding: 15px;
+            }
+            
+            .page-label {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="graphic-design.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回平面设计作品集
+        </a>
+
+        <!-- 大标题 -->
+        <div class="page-header">
+            <h1 class="page-title">报纸设计作品</h1>
+            <p class="page-subtitle">1份报纸，正反两页设计展示</p>
+        </div>
+
+        <!-- 作品展示 -->
+        <div class="works-container">
+            <div class="work-item">
+                <h2 class="work-title">校园报刊设计</h2>
+                
+                <!-- 报纸正反页展示 - 单列垂直布局 -->
+                <div class="newspaper-pages">
+                    <!-- 正面 -->
+                    <div class="newspaper-page">
+                        <div class="page-label">报纸正面</div>
+                        <div class="newspaper-image-container">
+                            <img src="images/newspaper/01.png" 
+                                 alt="报纸正面设计" class="newspaper-image">
+                        </div>
+                    </div>
+                    
+                    <!-- 反面 -->
+                    <div class="newspaper-page">
+                        <div class="page-label">报纸反面</div>
+                        <div class="newspaper-image-container">
+                            <img src="images/newspaper/02.png" 
+                                 alt="报纸反面设计" class="newspaper-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="work-description">
+                    这是一份关于MAP青年社区的月刊报纸，包含人物专访、联合经验贴、校园趣事和活动招募等丰富内容。
+                </p>
+            </div>
+        </div>
+
+        <!-- 页面导航 -->
+        <div class="page-navigation">
+            <a href="banner-design.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> 上一页：Banner设计
+            </a>
+            
+            <a href="poster-design.html" class="nav-link next">
+                下一页：海报设计 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // GitHub Pages检测
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hostname.includes('github.io')) {
+                console.log('正在GitHub Pages上运行，报纸设计页面已加载');
+            }
+            
+            // 图片加载错误处理
+            const images = document.querySelectorAll('.newspaper-image');
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.warn(`图片加载失败: ${this.src}`);
+                    // 创建报纸比例的占位图
+                    const width = 800;
+                    const height = 600;
+                    this.src = `data:image/svg+xml;base64,${btoa(`
+                        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#1a1a1a"/>
+                            <rect x="10" y="10" width="${width-20}" height="${height-20}" fill="none" stroke="#9d4edd" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="50%" y="45%" font-family="Arial" font-size="24" fill="#9d4edd" text-anchor="middle">报纸设计预览</text>
+                            <text x="50%" y="55%" font-family="Arial" font-size="16" fill="#aaaaaa" text-anchor="middle">请检查 images/newspaper/ 目录下的图片文件</text>
+                        </svg>
+                    `)}`;
+                };
+            });
+        });
+    </script>
+</body>
+</html>

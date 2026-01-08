@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner设计作品 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 大标题 */
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* 作品展示 */
+        .works-container {
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        .work-item {
+            margin-bottom: 60px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .work-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .work-image-container {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .work-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .work-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* 导航箭头 */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-link i {
+            transition: transform 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .nav-link.next:hover i {
+            transform: translateX(5px);
+        }
+
+        .nav-link.next {
+            margin-left: auto;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 40px 0 25px;
+            text-align: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .work-item {
+                padding: 20px;
+            }
+            
+            .work-title {
+                font-size: 1.5rem;
+            }
+            
+            .work-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-navigation {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .nav-link.next {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="graphic-design.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回平面设计作品集
+        </a>
+
+        <!-- 大标题 -->
+        <div class="page-header">
+            <h1 class="page-title">Banner设计作品</h1>
+            <p class="page-subtitle">2个精选Banner设计作品展示</p>
+        </div>
+
+        <!-- 作品展示 -->
+        <div class="works-container">
+          <!-- 作品1 -->
+<div class="work-item">
+    <h2 class="work-title">峰会广播站Banner</h2>
+    <div class="work-image-container">
+        <img src="images/banner/01.jpg" 
+             alt="电商促销Banner" class="work-image">
+    </div>
+    <p class="work-description">
+        这张banner是为“2024第七届MAP启航青年峰会”设计的。手绘了一个充满活力的绿色插图作为背景，以传达峰会的创新精神和青春活力。在设计中，我融入了自然元素，如树叶和花朵，增添视觉吸引力，也象征着峰会的生命力和成长。题目“峰会”和“广播站”采用了醒目的黄色字体，与背景形成鲜明对比，确保了信息的突出和易读性。整体设计简洁创意，旨在吸引参与者的注意力，并激发他们对峰会的兴趣。
+    </p>
+</div>
+
+<!-- 作品2 -->
+<div class="work-item">
+    <h2 class="work-title">峰会广播站Banner</h2>
+    <div class="work-image-container">
+        <img src="images/banner/02.jpg" 
+             alt="品牌宣传Banner" class="work-image">
+    </div>
+    <p class="work-description">
+        这张banner专为“2023峰会广播站”的回顾推送设计。采用复古的卡通风格，以吸引年轻受众的注意。色彩鲜艳，充满活力，与峰会的年轻和创新精神相呼应。设计中包含了对话框和卡通人物，增加趣味性。“DAY3”和“2023”的突出显示，帮助观众快速识别活动的时间和年份，这对于活动的宣传和参与者的日程安排至关重要。整体设计能够有效地传达峰会的信息，并激发目标受众的兴趣。
+    </p>
+</div>
+
+        <!-- 页面导航 -->
+        <div class="page-navigation">
+            <a href="push-design.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> 上一页：推送设计
+            </a>
+            
+            <a href="newspaper-design.html" class="nav-link next">
+                下一页：报纸设计 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // GitHub Pages检测
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hostname.includes('github.io')) {
+                console.log('正在GitHub Pages上运行，Banner设计页面已加载');
+            }
+        });
+    </script>
+</body>
+</html>

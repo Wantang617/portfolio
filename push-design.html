@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推送设计作品 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 大标题 */
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* 作品展示 */
+        .works-container {
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        .work-item {
+            margin-bottom: 80px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .work-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* 修改单张图片容器 */
+        .work-image-container {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* 修改单张图片样式 - 宽度100%，与文本对齐 */
+        .work-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* 保持图片比例 */
+        }
+
+        .work-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-top: 25px;
+        }
+
+        /* 修改多图片容器 - 改为垂直排列 */
+        .multi-images-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .multi-image-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* 修改多图片样式 - 宽度100%，与文本对齐 */
+        .multi-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* 图片放大预览功能 */
+        .image-preview-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .preview-image {
+            max-width: 95%;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-preview {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s;
+        }
+
+        .close-preview:hover {
+            color: var(--accent-color);
+        }
+
+        /* 点击图片放大提示 */
+        .image-hint {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* 导航箭头 */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-link i {
+            transition: transform 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .nav-link.next:hover i {
+            transform: translateX(5px);
+        }
+
+        .nav-link.next {
+            margin-left: auto;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 40px 0 25px;
+            text-align: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .work-item {
+                padding: 20px;
+            }
+            
+            .work-title {
+                font-size: 1.5rem;
+            }
+            
+            .work-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-navigation {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .nav-link.next {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="graphic-design.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回平面设计作品集
+        </a>
+
+        <!-- 大标题 -->
+        <div class="page-header">
+            <h1 class="page-title">推送设计作品</h1>
+            <p class="page-subtitle">4个分类，6个精选推送设计作品展示</p>
+        </div>
+
+        <!-- 作品展示 -->
+        <div class="works-container">
+            <!-- 第一类：漫画推送 -->
+            <div class="work-item">
+                <h2 class="work-title">漫画推送设计</h2>
+                <div class="work-image-container">
+                    <img src="images/push/1.png" alt="漫画推送设计" class="work-image" onclick="openPreview(this.src, '漫画推送设计')">
+                </div>
+                <p class="work-description">
+                    以漫画形式呈现的科普类推送设计，结合医疗知识科普与趣味漫画元素，通过生动的故事情节和视觉表现，将复杂的医学知识转化为通俗易懂的内容。设计注重信息层次和视觉引导，在保持专业性的同时增强可读性和传播性。
+                </p>
+            </div>
+
+            <!-- 第二类：招募推送（多图片） -->
+            <div class="work-item">
+                <h2 class="work-title">招募推送设计系列</h2>
+                <div class="multi-images-container">
+                    <div class="multi-image-item">
+                        <img src="images/push/2-1.png" alt="招募推送设计1" class="multi-image" onclick="openPreview(this.src, '招募推送设计1')">
+                    </div>
+                    <div class="multi-image-item">
+                        <img src="images/push/2-2.png" alt="招募推送设计2" class="multi-image" onclick="openPreview(this.src, '招募推送设计2')">
+                    </div>
+                    <div class="multi-image-item">
+                        <img src="images/push/2-3.png" alt="招募推送设计3" class="multi-image" onclick="openPreview(this.src, '招募推送设计3')">
+                    </div>
+                </div>
+                <p class="work-description">
+                    在这套招募推送的排版设计中，围绕"树木生长"的核心隐喻，为不同身份的招募对象构建了差异化的视觉阅读节奏。对于参与者，运用居中对称的版式、大量留白与诗意短句，营造沉静而引人深思的序言感；对于讲师，则转换为清晰的模块化卡片布局，通过信息分层、图标引导与紧凑的图文区隔，突出专业的信赖感与结构化信息；对于志愿者，则采用更活泼的海报化风格，利用对话框、枝叶图形等元素与直接的口号式标题，营造出热情协作的即时召唤。整套排版通过统一的视觉符号（种子、年轮、树木）与分层的版式语言，在保持整体文艺基调的同时，精准服务于从情感共鸣到理性决策的完整招募动线。
+                </p>
+            </div>
+
+            <!-- 第三类：回顾推送 -->
+            <div class="work-item">
+                <h2 class="work-title">回顾推送设计</h2>
+                <div class="work-image-container">
+                    <img src="images/push/3.png" alt="回顾推送设计" class="work-image" onclick="openPreview(this.src, '回顾推送设计')">
+                </div>
+                <p class="work-description">
+                    该推送以"无线电频率"为视觉核心，构建了一套完整的沉浸式叙事系统。将抽象的活动理念（同频共振）转化为可直观感知的界面语言：通过设计一条可横向点击、展开的"胶卷带"作为交互主线，将静态照片流转化为一个可供用户主动探索的时间线；同时，运用信号波纹、频率刻度与复古电台的视觉符号，统领全篇的版式骨架，使图文排版自然地融入"搜寻信号"的隐喻中。最终，整个排版通过交互设计与视觉质感的结合，将活动回顾从一个简单的总结页面，转变为一个能让参与者重温现场、感知社群连接的情感化记忆空间。
+                </p>
+            </div>
+
+            <!-- 第四类：年末推送 -->
+            <div class="work-item">
+                <h2 class="work-title">年末推送设计</h2>
+                <div class="work-image-container">
+                    <img src="images/push/4.png" alt="年末推送设计" class="work-image" onclick="openPreview(this.src, '年末推送设计')">
+                </div>
+                <p class="work-description">
+                    该年度推送的排版，以第一人称日记与手账簿的混合视觉逻辑展开。通过构建一个非对称、充满呼吸感的网格系统来承载碎片化内容（如清单、数据、引文、照片），利用字体大小与粗细的剧烈对比、手写体标注、便签式底纹清晰划分信息层级。通过有意的文字重叠、元素错位与拼贴感装饰线，强化了"个人记录"的真实触感与手工温度，将组织年报转化为一次亲切的社群记忆共享。
+                </p>
+            </div>
+        </div>
+
+        <!-- 页面导航 -->
+        <div class="page-navigation">
+            <a href="brochure-design.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> 上一页：三折页设计
+            </a>
+            
+            <a href="banner-design.html" class="nav-link next">
+                下一页：Banner设计 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 图片放大预览容器 -->
+    <div class="image-preview-container" id="previewContainer">
+        <button class="close-preview" onclick="closePreview()">&times;</button>
+        <img id="previewImage" src="" alt="预览图片" class="preview-image">
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 图片放大预览功能
+        function openPreview(src, alt) {
+            const previewContainer = document.getElementById('previewContainer');
+            const previewImage = document.getElementById('previewImage');
+            
+            previewImage.src = src;
+            previewImage.alt = alt;
+            previewContainer.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+        
+        function closePreview() {
+            const previewContainer = document.getElementById('previewContainer');
+            previewContainer.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 点击预览容器外部关闭预览
+        document.getElementById('previewContainer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePreview();
+            }
+        });
+        
+        // 按ESC键关闭预览
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePreview();
+            }
+        });
+        
+        // GitHub Pages检测
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hostname.includes('github.io')) {
+                console.log('正在GitHub Pages上运行，推送设计页面已加载');
+            }
+            
+            // 图片加载错误处理
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.warn(`图片加载失败: ${this.src}`);
+                    // 创建一个A4竖图比例的占位图
+                    const width = 595; // A4宽度（像素）
+                    const height = 842; // A4高度（像素）
+                    this.src = `data:image/svg+xml;base64,${btoa(`
+                        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#1a1a1a"/>
+                            <rect x="10" y="10" width="${width-20}" height="${height-20}" fill="none" stroke="#9d4edd" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="50%" y="45%" font-family="Arial" font-size="24" fill="#9d4edd" text-anchor="middle">推送设计预览</text>
+                            <text x="50%" y="55%" font-family="Arial" font-size="16" fill="#aaaaaa" text-anchor="middle">A4竖图比例 (595×842)</text>
+                        </svg>
+                    `)}`;
+                };
+            });
+        });
+    </script>
+</body>
+</html>
