@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频剪辑作品 | 设计与媒体 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 - 页头样式 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 返回主页按钮 - 页尾样式（箭头在右边） */
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 60px;
+            padding: 12px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            align-self: center;
+        }
+
+        .back-to-home i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-to-home:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 视频作品展示区域 */
+        .video-works-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        /* 单个视频作品卡片 */
+        .video-work-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .video-work-card:hover {
+            border-color: rgba(157, 78, 221, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.1);
+        }
+
+        /* 视频标题 */
+        .video-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .video-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        /* 视频容器 */
+        .video-container {
+            margin: 25px 0 35px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* B站视频容器 */
+        .bilibili-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        .bilibili-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 视频信息栏 */
+        .video-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-info-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-info-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 作品标签 */
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .work-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 页面介绍部分 */
+        .page-intro {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .video-title {
+                font-size: 1.8rem;
+            }
+            
+            .video-work-card {
+                padding: 25px;
+            }
+            
+            .video-info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .video-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 页面头部 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">视频剪辑作品集</h1>
+            <h2 class="project-subtitle-main">VIDEO EDITING PORTFOLIO - VISUAL STORYTELLING</h2>
+        </div>
+
+        <!-- 页面介绍 -->
+        <div class="page-intro">
+            <p>展示了近年来创作的部分视频剪辑作品，涵盖宣传片、纪录片、创意混剪等多种类型。</p>
+        </div>
+
+        <!-- 视频作品展示区域 -->
+        <div class="video-works-container">
+            <!-- 作品1：社区宣传视频 -->
+            <div class="video-work-card">
+                <h2 class="video-title">社区宣传视频</h2>
+                
+                <!-- 视频容器 -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115857028023694&bvid=BV1wpiDBTEjH&cid=35253389253&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 社区宣传视频 - Bilibili平台
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV1wpiDBTEjH" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品标签 -->
+                <div class="work-tags">
+                    <span class="work-tag">宣传片</span>
+                    <span class="work-tag">社区文化</span>
+                    <span class="work-tag">纪录片风格</span>
+                    <span class="work-tag">多机位剪辑</span>
+                    <span class="work-tag">生活记录</span>
+                </div>
+            </div>
+            
+            <!-- 作品2：照片混剪 -->
+            <div class="video-work-card">
+                <h2 class="video-title">照片混剪 - 活动总结</h2>
+                
+                <!-- 视频容器 -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856994469186&bvid=BV11diDBCE8T&cid=35253322357&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 照片混剪 - Bilibili平台
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV11diDBCE8T" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品标签 -->
+                <div class="work-tags">
+                    <span class="work-tag">照片混剪</span>
+                    <span class="work-tag">动态影像</span>
+                    <span class="work-tag">创意转场</span>
+                    <span class="work-tag">视觉叙事</span>
+                    <span class="work-tag">节奏剪辑</span>
+                </div>
+            </div>
+            
+            <!-- 作品3：学校宣传片 -->
+            <div class="video-work-card">
+                <h2 class="video-title">学校宣传片 - 传承智慧，点亮未来</h2>
+                
+                <!-- 视频容器 -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856944336720&bvid=BV12RiDBLE3D&cid=35253129126&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 学校宣传片 - Bilibili平台
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV12RiDBLE3D" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品标签 -->
+                <div class="work-tags">
+                    <span class="work-tag">学校宣传</span>
+                    <span class="work-tag">个人制作</span>
+                    <span class="work-tag">教育影像</span>
+                    <span class="work-tag">无人机航拍</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 返回主页按钮（页尾） -->
+        <div style="display: flex; justify-content: center;">
+            <a href="index.html" class="back-to-home">
+                返回主页 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2024 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 视频加载交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const bilibiliIframes = document.querySelectorAll('.bilibili-video-container iframe');
+            
+            bilibiliIframes.forEach((iframe, index) => {
+                iframe.onload = function() {
+                    console.log(`B站视频 ${index + 1} 加载完成`);
+                    
+                    // 为视频容器添加加载完成效果
+                    const videoContainer = this.closest('.bilibili-video-container');
+                    if (videoContainer) {
+                        videoContainer.style.boxShadow = '0 0 20px rgba(157, 78, 221, 0.3)';
+                        videoContainer.style.transition = 'box-shadow 0.5s';
+                    }
+                    
+                    // 为对应的B站图标添加特效
+                    const bilibiliIcon = this.closest('.video-info-bar')?.querySelector('.fa-bilibili');
+                    if (bilibiliIcon) {
+                        bilibiliIcon.style.color = '#fb7299';
+                        bilibiliIcon.style.transition = 'color 0.5s';
+                    }
+                };
+                
+                iframe.onerror = function() {
+                    console.warn(`B站视频 ${index + 1} 加载失败`);
+                };
+            });
+            
+            // 为B站链接添加点击统计
+            const bilibiliLinks = document.querySelectorAll('.video-info-bar a[href*="bilibili.com"]');
+            bilibiliLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const videoTitle = this.closest('.video-work-card')?.querySelector('.video-title')?.textContent;
+                    console.log(`用户点击B站链接，前往 ${videoTitle} 视频页面`);
+                    // 可以在这里添加统计代码
+                });
+            });
+            
+            // 为视频卡片添加悬停效果增强
+            const videoCards = document.querySelectorAll('.video-work-card');
+            videoCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const videoTitle = this.querySelector('.video-title');
+                    if (videoTitle) {
+                        videoTitle.style.transform = 'translateX(10px)';
+                        videoTitle.style.transition = 'transform 0.3s';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const videoTitle = this.querySelector('.video-title');
+                    if (videoTitle) {
+                        videoTitle.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+            
+            // 为作品标签添加悬停效果
+            const workTags = document.querySelectorAll('.work-tag');
+            workTags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.background = 'var(--gradient)';
+                    this.style.color = 'white';
+                    this.style.borderColor = 'transparent';
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.transition = 'all 0.3s';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(157, 78, 221, 0.15)';
+                    this.style.color = 'var(--accent-color)';
+                    this.style.borderColor = 'rgba(157, 78, 221, 0.3)';
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

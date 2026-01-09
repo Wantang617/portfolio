@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画制作作品 | 设计与媒体 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd; /* 改回紫色系 */
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 - 页头样式 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 返回主页按钮 - 页尾样式（箭头在右边） */
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 60px;
+            padding: 12px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            align-self: center;
+        }
+
+        .back-to-home i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-to-home:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 动画作品展示区域 */
+        .animation-works-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        /* 单个动画作品卡片 */
+        .animation-work-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .animation-work-card:hover {
+            border-color: rgba(157, 78, 221, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.1);
+        }
+
+        /* 动画标题 */
+        .animation-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .animation-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        /* 视频容器 */
+        .video-container {
+            margin: 25px 0 20px; /* 减少底部边距，为技术规格留空间 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* B站视频容器 */
+        .bilibili-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        .bilibili-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 视频信息栏 */
+        .video-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-info-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-info-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 技术规格 - 移动到视频下方并缩小 */
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4列布局 */
+            gap: 12px; /* 缩小间距 */
+            margin: 25px 0 30px; /* 上下边距 */
+            padding: 15px; /* 缩小内边距 */
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 10px; /* 缩小圆角 */
+            border: 1px solid rgba(157, 78, 221, 0.15);
+        }
+
+        .spec-item {
+            padding: 10px; /* 缩小内边距 */
+            border-radius: 6px; /* 缩小圆角 */
+            text-align: center;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .spec-label {
+            color: #c77dff; /* 紫色字体 */
+            font-size: 0.8rem; /* 缩小字体 */
+            font-weight: 500; /* 调整字重 */
+            margin-bottom: 5px;
+            text-transform: uppercase; /* 大写字母 */
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            color: #9d4edd; /* 紫色字体 */
+            font-size: 0.95rem; /* 缩小字体 */
+            font-weight: 600;
+        }
+
+        /* 作品详细介绍 */
+        .work-details {
+            margin-top: 25px;
+            padding: 25px;
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .detail-section {
+            margin-bottom: 25px;
+        }
+
+        .detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-section h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .detail-section h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .detail-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .detail-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .detail-section li {
+            margin-bottom: 8px;
+        }
+
+        /* 作品标签 */
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .work-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 页面介绍部分 */
+        .page-intro {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .animation-title {
+                font-size: 1.8rem;
+            }
+            
+            .animation-work-card {
+                padding: 25px;
+            }
+            
+            .video-info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .tech-specs {
+                grid-template-columns: repeat(2, 1fr); /* 移动端改为2列 */
+                gap: 10px;
+                padding: 12px;
+            }
+            
+            .spec-label {
+                font-size: 0.75rem;
+            }
+            
+            .spec-value {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .animation-title {
+                font-size: 1.6rem;
+            }
+            
+            .work-details {
+                padding: 15px;
+            }
+            
+            .tech-specs {
+                grid-template-columns: 1fr; /* 超小屏幕改为1列 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 页面头部 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">动画制作作品集</h1>
+            <h2 class="project-subtitle-main">ANIMATION PRODUCTION PORTFOLIO - VISUAL STORYTELLING</h2>
+        </div>
+
+        <!-- 动画作品展示区域 -->
+        <div class="animation-works-container">
+            <!-- 作品：手绘动画《小镇蝶梦》 -->
+            <div class="animation-work-card">
+                <h2 class="animation-title">手绘动画《小镇蝶梦》</h2>
+                
+                <!-- 视频容器 -->
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856944203751&bvid=BV1KRiDBLEUd&cid=35253194180&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 手绘动画《小镇蝶梦》 - Bilibili平台
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV1KRiDBLEUd/?share_source=copy_web&vd_source=11a730f571bb4ec8069f6a1831fd677c" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 技术规格 - 移动到视频下方 -->
+                <div class="tech-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">作品大小</div>
+                        <div class="spec-value">63.0 MB</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">作品时长</div>
+                        <div class="spec-value">00:01:05</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">作品类型</div>
+                        <div class="spec-value">动画短片类</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">制作时间</div>
+                        <div class="spec-value">2024年12月</div>
+                    </div>
+                </div>
+                
+                <!-- 作品详细介绍 -->
+                <div class="work-details">
+                    <div class="detail-section">
+                        <h3>创作思路</h3>
+                        <p>很喜欢《心灵奇旅》里的一句话：未必有所成才算活着，只喜欢看天空、散步、吃披萨的人生也很好，我来这世界，只是为了看花怎么开，水怎么流，太阳怎么升起，夕阳何时落下，经历有趣的事，遇见难忘的人。</p>
+                        <p>在快节奏的现代生活中，人们往往忽视了身边的美好和生活中的小确幸。于是我创作了一个小动画，名叫《小镇蝶梦》，讲述了一个生活在小镇上的小女孩的故事。她的生活简单而平凡，但她从日常生活中的小确幸中找到了生活的意义。通过她的眼睛，我们可以体会到生活的简单治愈之美。</p>
+                        <p>作品中，蝴蝶作为自由和轻松的象征，一如小女孩的心情，我想展现的是"每个人的生命都是一场独特的旅行，不必急于求成，只需享受每一步的风景"。</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>技术方案</h3>
+                        <p>采用手绘逐帧动画与AE摄像机以及一些AE基本动画结合，创造出流畅的动画效果和视觉效果。</p>
+                        <ul>
+                            <li>手绘逐帧动画：使用数位板在绘图软件中逐帧绘制，确保画面的艺术性和独特性</li>
+                            <li>AE摄像机技术：利用After Effects的3D摄像机功能，增强动画的动态感和视觉冲击力</li>
+                            <li>后期合成：在AE中进行颜色校正、特效添加和音频同步，提升作品的整体质感</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>创新与特色</h3>
+                        <ul>
+                            <li><strong>独特的手绘艺术风格</strong>：采用传统手绘逐帧动画技术，展现独特的艺术表现力和个性化的视觉风格</li>
+                            <li><strong>动态摄像机运用</strong>：结合AE摄像机技术，增强动画的动态感和视觉冲击力，创造沉浸式观看体验</li>
+                            <li><strong>象征性视觉语言</strong>：以蝴蝶为核心象征，传达自由、轻松和治愈的主题，强化情感表达</li>
+                            <li><strong>生活化叙事</strong>：通过小镇女孩的日常生活，探讨现代生活中的小确幸和生活意义，引发观众共鸣</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>创作收获</h3>
+                        <p>通过创作《小镇蝶梦》这部动画短片，我深刻体会到了艺术表达的力量，以及如何将抽象的情感和理念转化为具体的视觉故事。在技术层面，我不仅掌握了手绘逐帧动画的精细技艺，还学会了如何巧妙地结合AE摄像机和基本动画技术，以增强作品的动态感和视觉冲击力。</p>
+                        <p>这个过程中，我学会了耐心和细致的重要性，因为动画制作是一项需要极大专注和精确度的工作。这次创作经历不仅让我在个人技能和知识上有所增长，也为我未来的艺术创作和职业道路提供了宝贵的经验。我期待将这些经验运用到未来的项目中，继续探索动画艺术的无限可能。</p>
+                    </div>
+                </div>
+                
+                <!-- 作品标签 -->
+                <div class="work-tags">
+                    <span class="work-tag">手绘动画</span>
+                    <span class="work-tag">逐帧动画</span>
+                    <span class="work-tag">AE特效</span>
+                    <span class="work-tag">治愈系</span>
+                    <span class="work-tag">视觉叙事</span>
+                    <span class="work-tag">生活哲理</span>
+                    <span class="work-tag">短片</span>
+                    <span class="work-tag">原创动画</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 返回主页按钮（页尾） -->
+        <div style="display: flex; justify-content: center;">
+            <a href="index.html" class="back-to-home">
+                返回主页 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2024 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 视频加载交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const bilibiliIframes = document.querySelectorAll('.bilibili-video-container iframe');
+            
+            bilibiliIframes.forEach((iframe, index) => {
+                iframe.onload = function() {
+                    console.log(`B站视频 ${index + 1} 加载完成`);
+                    
+                    // 为视频容器添加加载完成效果
+                    const videoContainer = this.closest('.bilibili-video-container');
+                    if (videoContainer) {
+                        videoContainer.style.boxShadow = '0 0 20px rgba(157, 78, 221, 0.3)';
+                        videoContainer.style.transition = 'box-shadow 0.5s';
+                    }
+                    
+                    // 为对应的B站图标添加特效
+                    const bilibiliIcon = this.closest('.video-info-bar')?.querySelector('.fa-bilibili');
+                    if (bilibiliIcon) {
+                        bilibiliIcon.style.color = '#fb7299';
+                        bilibiliIcon.style.transition = 'color 0.5s';
+                    }
+                };
+                
+                iframe.onerror = function() {
+                    console.warn(`B站视频 ${index + 1} 加载失败`);
+                };
+            });
+            
+            // 为B站链接添加点击统计
+            const bilibiliLinks = document.querySelectorAll('.video-info-bar a[href*="bilibili.com"]');
+            bilibiliLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const animationTitle = this.closest('.animation-work-card')?.querySelector('.animation-title')?.textContent;
+                    console.log(`用户点击B站链接，前往 ${animationTitle} 视频页面`);
+                    // 可以在这里添加统计代码
+                });
+            });
+            
+            // 为动画卡片添加悬停效果增强
+            const animationCards = document.querySelectorAll('.animation-work-card');
+            animationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const animationTitle = this.querySelector('.animation-title');
+                    if (animationTitle) {
+                        animationTitle.style.transform = 'translateX(10px)';
+                        animationTitle.style.transition = 'transform 0.3s';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const animationTitle = this.querySelector('.animation-title');
+                    if (animationTitle) {
+                        animationTitle.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+            
+            // 为作品标签添加悬停效果
+            const workTags = document.querySelectorAll('.work-tag');
+            workTags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.background = 'var(--gradient)';
+                    this.style.color = 'white';
+                    this.style.borderColor = 'transparent';
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.transition = 'all 0.3s';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(157, 78, 221, 0.15)';
+                    this.style.color = 'var(--accent-color)';
+                    this.style.borderColor = 'rgba(157, 78, 221, 0.3)';
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 为技术规格项添加悬停效果
+            const specItems = document.querySelectorAll('.spec-item');
+            specItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 5px 15px rgba(157, 78, 221, 0.2)';
+                    this.style.borderColor = 'rgba(157, 78, 221, 0.4)';
+                    this.style.transition = 'all 0.3s';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                    this.style.borderColor = 'rgba(157, 78, 221, 0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

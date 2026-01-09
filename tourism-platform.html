@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧旅游公共平台 | J2EE开发项目 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 - 页头样式 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 返回主页按钮 - 页尾样式（箭头在右边） */
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 60px;
+            padding: 12px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            align-self: center;
+        }
+
+        .back-to-home i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-to-home:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 项目信息网格 */
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .info-column {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .info-subcontent {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 项目背景和介绍 */
+        .project-section-new {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .section-title-new {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title-new:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 技术栈标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 功能特色网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            background: rgba(157, 78, 221, 0.12);
+            border-color: rgba(157, 78, 221, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 系统架构图展示 */
+        .architecture-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .architecture-img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .architecture-caption {
+            color: var(--text-secondary);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* 数据库表展示 */
+        .database-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(30, 30, 40, 0.8);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .database-table th {
+            background: rgba(157, 78, 221, 0.2);
+            color: var(--primary-color);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .database-table td {
+            padding: 12px 15px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(157, 78, 221, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .database-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .database-table tr:hover {
+            background: rgba(157, 78, 221, 0.05);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 项目成果列表 */
+        .achievements-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .achievements-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .achievements-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 流程图样式 */
+        .flowchart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .flowchart-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 1.8rem;
+            }
+            
+            .project-section-new {
+                padding: 25px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .database-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .section-title-new {
+                font-size: 1.6rem;
+            }
+            
+            .info-label {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tags {
+                gap: 10px;
+            }
+            
+            .tech-tag {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .feature-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 项目头部 - 新格式 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">智慧旅游公共平台</h1>
+            <h2 class="project-subtitle-main">INTELLIGENT TOURISM PUBLIC PLATFORM - J2EE DEVELOPMENT PROJECT</h2>
+            
+            <!-- 项目信息网格 -->
+            <div class="project-info-grid">
+                <div class="info-column">
+                    <div class="info-label">TIME</div>
+                    <div class="info-content">2024.10 – 2024.11</div>
+                    <div class="info-subcontent">2个月课程项目开发</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">TYPE</div>
+                    <div class="info-content">课程实践项目</div>
+                    <div class="info-subcontent">J2EE框架与开发技术课程</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">ROLE</div>
+                    <div class="info-content">独立开发者</div>
+                    <div class="info-subcontent">全栈开发与数据库设计</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目内容 -->
+        <div class="project-content">
+            <!-- 项目背景 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目背景</h2>
+                <div class="section-content">
+                    <p>随着互联网技术的普及和旅游行业的快速发展，传统的旅游管理方式已经无法满足现代用户的需求。传统的纸质记录方式效率低下，信息传递不便，用户查找旅游路线和景点信息困难。因此，开发一个基于网络的智慧旅游公共平台成为行业发展的必然趋势。</p>
+                    <p>本项目是《J2EE框架与开发技术》课程的实践项目，旨在通过实际开发一个完整的智慧旅游平台，掌握J2EE企业级应用开发的核心技术。系统采用B/S架构，为管理员和普通用户提供不同的功能模块，实现旅游路线的在线展示、预订、管理和信息交流。</p>
+                    <p>平台旨在解决传统旅游管理中的信息不透明、预订流程复杂、用户体验差等问题，通过数字化手段提升旅游服务的效率和质量。</p>
+                </div>
+            </div>
+
+            <!-- 项目介绍 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目介绍</h2>
+                <div class="section-content">
+                    <p>智慧旅游公共平台是一个基于J2EE技术的综合性旅游管理系统，采用MVC架构模式，整合了Spring Boot框架、MySQL数据库和前端JSP技术。系统分为管理员端和用户端两大模块，实现了旅游路线的展示、预订、管理和信息交互全流程。</p>
+                    <p>管理员端功能包括：用户管理、路线分类管理、旅游路线管理、最新路线管理、订单管理、客服管理等。管理员可以对系统内的所有数据进行维护和监控，确保平台的正常运行和服务质量。</p>
+                    <p>用户端功能包括：旅游路线浏览、最新线路查看、旅游资讯阅读、个人中心管理、在线下单、购物车管理、客服咨询等。用户可以通过平台方便地查找旅游信息、在线预订路线、管理个人订单和收藏。</p>
+                    <p>系统通过清晰的业务流程设计和友好的用户界面，为用户提供便捷、高效的旅游信息服务，同时为管理员提供强大的后台管理工具。</p>
+                </div>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">J2EE</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">JSP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">MVC架构</span>
+                    <span class="tech-tag">Tomcat</span>
+                    <span class="tech-tag">MyEclipse</span>
+                </div>
+            </div>
+
+            <!-- 系统架构与设计 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">系统架构与设计</h2>
+                
+                <div class="architecture-container">
+                    <div class="flowchart-container">
+                        <div class="flowchart-title">系统功能结构</div>
+                        <div class="section-content">
+                            <p>系统采用分层架构设计，分为表示层、业务逻辑层和数据访问层：</p>
+                            <p>1. <strong>表示层</strong>：使用JSP技术实现用户界面，包括前端页面展示和用户交互。</p>
+                            <p>2. <strong>业务逻辑层</strong>：基于Spring Boot框架，处理核心业务逻辑，包括用户管理、订单处理、路线推荐等。</p>
+                            <p>3. <strong>数据访问层</strong>：通过JDBC和MyBatis技术访问MySQL数据库，实现数据的持久化存储。</p>
+                            <p>4. <strong>数据库层</strong>：MySQL关系型数据库，存储系统所有数据，包括用户信息、旅游路线、订单记录等。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flowchart-container">
+                        <div class="flowchart-title">用户登录流程图</div>
+                        <div class="section-content">
+                            <p>1. 用户访问系统登录页面</p>
+                            <p>2. 输入用户名和密码</p>
+                            <p>3. 系统验证用户身份</p>
+                            <p>4. 验证成功：跳转到系统主页</p>
+                            <p>5. 验证失败：返回登录页面并提示错误信息</p>
+                            <p>6. 新用户可点击注册链接进入注册流程</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 核心功能特色 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">核心功能特色</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3 class="feature-title">旅游路线管理</h3>
+                        <p class="feature-description">
+                            管理员可以添加、编辑、删除旅游路线信息，包括路线名称、分类、封面图、景点名称、出发地、目的地、交通方式等详细信息。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="feature-title">在线预订系统</h3>
+                        <p class="feature-description">
+                            用户可以在线浏览旅游路线，添加至购物车或直接购买，支持多种支付方式，实时生成订单并跟踪订单状态。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="feature-title">用户权限管理</h3>
+                        <p class="feature-description">
+                            系统分为管理员和普通用户两种角色，不同角色拥有不同的操作权限，确保系统数据的安全性和管理的规范性。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="feature-title">客服咨询系统</h3>
+                        <p class="feature-description">
+                            提供在线客服功能，用户可以咨询旅游相关问题，管理员可以及时回复用户咨询，提升用户体验和服务质量。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3 class="feature-title">旅游资讯发布</h3>
+                        <p class="feature-description">
+                            管理员可以发布最新的旅游资讯、行业动态和优惠信息，用户可以及时获取旅游相关的最新消息。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="feature-title">数据分析统计</h3>
+                        <p class="feature-description">
+                            系统记录用户行为数据、订单数据和路线点击量，为管理员提供数据分析和决策支持。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据库设计 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">数据库设计</h2>
+                <div class="section-content">
+                    <p>系统采用MySQL数据库，设计了多个数据表来存储不同类型的信息。以下是部分核心数据表的设计：</p>
+                    
+                    <table class="database-table">
+                        <thead>
+                            <tr>
+                                <th>表名</th>
+                                <th>说明</th>
+                                <th>主要字段</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>lvyouxianlu</td>
+                                <td>旅游路线信息表</td>
+                                <td>线路名称、线路分类、封面图、景点名称、出发地、目的地、交通方式、价格等</td>
+                            </tr>
+                            <tr>
+                                <td>user</td>
+                                <td>用户信息表</td>
+                                <td>用户名、密码、姓名、头像、性别、联系电话、余额等</td>
+                            </tr>
+                            <tr>
+                                <td>orders</td>
+                                <td>订单信息表</td>
+                                <td>订单编号、商品名称、购买数量、价格、支付类型、地址等</td>
+                            </tr>
+                            <tr>
+                                <td>cart</td>
+                                <td>购物车信息表</td>
+                                <td>商品表名、用户id、商品id、商品名称、图片、购买数量</td>
+                            </tr>
+                            <tr>
+                                <td>address</td>
+                                <td>地址信息表</td>
+                                <td>用户id、地址、收货人、电话、是否默认地址</td>
+                            </tr>
+                            <tr>
+                                <td>chat</td>
+                                <td>客服聊天表</td>
+                                <td>用户id、管理员id、消息内容、是否回复</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p>数据库设计遵循规范化原则，减少数据冗余，提高数据一致性和查询效率。通过合理设置主键、外键和索引，确保数据的完整性和查询性能。</p>
+                </div>
+            </div>
+
+            <!-- 系统实现 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">系统实现</h2>
+                <div class="section-content">
+                    <p>系统采用J2EE企业级开发技术栈，实现了完整的旅游管理平台：</p>
+                    
+                    <p><strong>1. 技术架构实现：</strong></p>
+                    <ul class="achievements-list">
+                        <li>前端使用JSP技术实现动态页面，结合HTML、CSS和JavaScript</li>
+                        <li>后端采用Spring Boot框架，简化配置，提高开发效率</li>
+                        <li>使用MyBatis作为持久层框架，简化数据库操作</li>
+                        <li>Tomcat作为Web服务器，部署和运行J2EE应用</li>
+                        <li>MySQL数据库存储系统所有数据</li>
+                    </ul>
+                    
+                    <p><strong>2. 关键功能实现：</strong></p>
+                    <ul class="achievements-list">
+                        <li>用户注册登录系统：实现基于Session的用户认证和授权</li>
+                        <li>旅游路线展示：支持分类筛选、关键词搜索和分页显示</li>
+                        <li>购物车功能：实现添加、修改、删除购物车商品</li>
+                        <li>在线支付模拟：模拟支付流程，生成订单记录</li>
+                        <li>后台管理系统：管理员对系统数据的全面管理</li>
+                        <li>客服系统：用户与管理员之间的实时沟通</li>
+                    </ul>
+                    
+                    <p><strong>3. 系统安全设计：</strong></p>
+                    <ul class="achievements-list">
+                        <li>用户密码采用MD5加密存储</li>
+                        <li>防止SQL注入攻击的参数化查询</li>
+                        <li>Session超时机制，提高系统安全性</li>
+                        <li>输入验证和过滤，防止XSS攻击</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 开发收获 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">开发收获</h2>
+                <div class="section-content">
+                    <p>通过这个课程项目，我获得了以下宝贵的开发经验：</p>
+                    
+                    <p>1. <strong>J2EE企业级开发技术掌握</strong>：深入理解了Spring Boot框架、JSP技术、MySQL数据库等J2EE核心技术，掌握了企业级应用开发的完整流程。</p>
+                    
+                    <p>2. <strong>MVC架构设计与实现</strong>：通过实际项目实践，掌握了MVC设计模式的应用，理解了分层架构在复杂系统开发中的重要性。</p>
+                    
+                    <p>3. <strong>数据库设计与优化</strong>：学会了如何根据业务需求设计数据库表结构，优化查询性能，确保数据的一致性和完整性。</p>
+                    
+                    <p>4. <strong>前后端交互与数据传递</strong>：掌握了JSP与Java后台的数据交互方式，理解了HTTP请求/响应机制，熟悉了AJAX异步数据加载技术。</p>
+                    
+                    <p>5. <strong>系统安全与性能优化</strong>：学习了常见的Web安全防护措施，掌握了系统性能优化的基本方法，包括数据库查询优化和缓存技术应用。</p>
+                    
+                    <p>6. <strong>项目开发全流程实践</strong>：从需求分析、系统设计、编码实现到测试部署，完整经历了软件开发的整个生命周期，提升了项目管理和问题解决能力。</p>
+                </div>
+            </div>
+
+            <!-- 项目成果 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目成果</h2>
+                <div class="section-content achievements-list">
+                    <li>完成了完整的智慧旅游公共平台开发，包含前后端所有功能模块</li>
+                    <li>实现了基于Spring Boot的J2EE企业级应用架构</li>
+                    <li>设计了规范的MySQL数据库，包含10+个数据表</li>
+                    <li>实现了用户管理、旅游路线管理、订单管理、客服系统等核心功能</li>
+                    <li>完成了系统的功能测试和性能测试，确保系统稳定运行</li>
+                    <li>获得了课程项目优秀评价，展示了扎实的J2EE开发能力</li>
+                    <li>积累了完整的J2EE项目开发经验，为未来企业级应用开发奠定了基础</li>
+                </div>
+            </div>
+            
+            <!-- 返回主页按钮（页尾） -->
+            <div style="display: flex; justify-content: center;">
+                <a href="index.html" class="back-to-home">
+                    返回主页 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2024 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为功能卡片添加悬停效果
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2)';
+                        icon.style.transition = 'transform 0.3s';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // 为数据库表格行添加悬停效果
+            const tableRows = document.querySelectorAll('.database-table tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(157, 78, 221, 0.08)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
