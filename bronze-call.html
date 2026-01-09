@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青铜的呼唤 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 底部返回主页按钮 */
+        .bottom-back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 12px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 40px auto 60px;
+            display: block;
+            width: fit-content;
+        }
+
+        .bottom-back-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .bottom-back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.3);
+        }
+
+        .bottom-back-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 项目信息网格 */
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .info-column {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .info-subcontent {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 项目背景和介绍 */
+        .project-section-new {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .section-title-new {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title-new:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* 游戏视频部分 */
+        .video-container {
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* B站视频容器 */
+        .bilibili-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .bilibili-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 视频信息栏 */
+        .video-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-info-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-info-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 技术栈标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 游戏机制展示 */
+        .game-mechanics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .mechanic-card {
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+        }
+
+        .mechanic-card:hover {
+            background: rgba(157, 78, 221, 0.12);
+            border-color: rgba(157, 78, 221, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .mechanic-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .mechanic-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 文物UI界面展示 */
+        .artifact-ui-showcase {
+            margin: 40px 0;
+        }
+
+        .artifact-ui-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .artifact-ui-item {
+            background: rgba(157, 78, 221, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+            transition: all 0.3s;
+        }
+
+        .artifact-ui-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .artifact-ui-header {
+            background: rgba(157, 78, 221, 0.1);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .artifact-ui-name {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+        }
+
+        .artifact-ui-content {
+            padding: 20px;
+        }
+
+        .artifact-ui-image {
+            width: 100%;
+            height: 200px;
+            background-color: #222;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .artifact-ui-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .ui-preview {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .artifact-ui-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        /* 叙事流程图 */
+        .narrative-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .flow-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border: 2px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 1.8rem;
+            }
+            
+            .project-section-new {
+                padding: 25px;
+            }
+            
+            .game-mechanics, .artifact-ui-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .narrative-flow {
+                gap: 20px;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            
+            /* 底部按钮响应式调整 */
+            .bottom-back-btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+                margin: 30px auto 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .section-title-new {
+                font-size: 1.6rem;
+            }
+            
+            .info-label {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tags {
+                gap: 10px;
+            }
+            
+            .tech-tag {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .artifact-ui-list {
+                grid-template-columns: 1fr;
+            }
+            
+            /* 底部按钮响应式调整 */
+            .bottom-back-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                margin: 20px auto 30px;
+            }
+            
+            .bottom-back-btn i {
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 项目头部 - 新格式 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">青铜的呼唤</h1>
+            <h2 class="project-subtitle-main">CALL OF THE BRONZE - IMMERSIVE MUSEUM EXPERIENCE</h2>
+            
+            <!-- 项目信息网格 -->
+            <div class="project-info-grid">
+                <div class="info-column">
+                    <div class="info-label">TIME</div>
+                    <div class="info-content">2025.03 – 2025.05</div>
+                    <div class="info-subcontent">3个月开发周期</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">PLATFORM</div>
+                    <div class="info-content">PC / Windows</div>
+                    <div class="info-subcontent">Unity引擎开发，第一人称探索</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">ROLE</div>
+                    <div class="info-content">独立开发项目</div>
+                    <div class="info-subcontent">策划、编程、场景设计全流程</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目内容 -->
+        <div class="project-content">
+            <!-- 项目背景 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目背景</h2>
+                <div class="section-content">
+                    <p>随着数字博物馆技术的发展，文化传承与科技融合成为重要方向。三星堆遗址作为中国青铜文明的代表，其神秘文物和深厚文化内涵为数字展览提供了绝佳素材。</p>
+                    <p>《青铜的呼唤》是一款基于Unity引擎开发的博物馆探索体验项目，旨在通过沉浸式叙事和交互设计，让用户在数字空间中探索三星堆青铜文明的奥秘。项目历时3个月完成，从概念设计到交互实现，全流程独立开发。</p>
+                </div>
+            </div>
+
+            <!-- 叙事流程 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">叙事流程</h2>
+                <div class="section-content">
+                    <p>玩家从<span class="highlight">现代美术馆</span>开始参观，偶然发现一个闪烁的光标指引到展馆角落。在那里，一个<span class="highlight">破损的青铜面具</span>静静陈列。好奇心驱使下触碰面具，瞬间被卷入黑暗漩涡...</p>
+                    <p>当视线再次清晰时，已置身于<span class="highlight">远古的青铜博物馆</span>。四周陈列着三星堆珍贵文物，每件文物都蕴含着古老的故事。玩家需要探索这个神秘空间，触碰文物解锁信息界面，逐步揭开青铜文明的秘密。</p>
+                </div>
+                
+                <div class="narrative-flow">
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <i class="fas fa-museum"></i>
+                        </div>
+                        <h3 class="step-title">现代美术馆</h3>
+                        <p class="step-description">参观现代艺术展览</p>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h3 class="step-title">神秘指引</h3>
+                        <p class="step-description">光标指引至角落</p>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <i class="fas fa-mask"></i>
+                        </div>
+                        <h3 class="step-title">触碰文物</h3>
+                        <p class="step-description">发现破损青铜面具</p>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3 class="step-title">时空穿越</h3>
+                        <p class="step-description">进入远古青铜世界</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 核心游戏机制 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">核心游戏机制</h2>
+                <div class="game-mechanics">
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">文物交互系统</h3>
+                        <p class="mechanic-description">
+                            触碰文物即可触发交互界面，展示详细的文物信息、历史背景和三维模型，支持缩放旋转查看细节。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">场景切换</h3>
+                        <p class="mechanic-description">
+                            实现从现代美术馆到远古青铜博物馆的自然场景过渡，通过视觉效果和音频变化增强沉浸感。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">地图自由探索</h3>
+                        <p class="mechanic-description">
+                            第一人称视角自由探索博物馆空间，无固定路线限制，玩家可以根据兴趣自由参观各个展区。
+                        </p>
+                    </div>
+                    
+                    <div class="mechanic-card">
+                        <h3 class="mechanic-title">叙事引导</h3>
+                        <p class="mechanic-description">
+                            通过光标指引和场景变化推动叙事发展，从现代美术馆到远古博物馆的自然过渡，增强故事沉浸感。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unity 3D</span>
+                    <span class="tech-tag">C#脚本</span>
+                    <span class="tech-tag">3D建模</span>
+                    <span class="tech-tag">交互设计</span>
+                    <span class="tech-tag">叙事设计</span>
+                    <span class="tech-tag">UI/UX设计</span>
+                    <span class="tech-tag">场景管理</span>
+                </div>
+            </div>
+
+            <!-- 文物UI界面展示 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">文物UI界面展示</h2>
+                <div class="section-content">
+                    <p>游戏中共实现六件三星堆文物的交互UI界面，每件文物都有详细的历史介绍和三维模型展示。以下是部分文物UI界面的预览：</p>
+                </div>
+                
+                <div class="artifact-ui-showcase">
+                    <div class="artifact-ui-list">
+                        <div class="artifact-ui-item">
+                            <div class="artifact-ui-header">
+                                <h3 class="artifact-ui-name">金面具交互界面</h3>
+                            </div>
+                            <div class="artifact-ui-content">
+                                <div class="artifact-ui-image" style="background-image: url('images/bronze/1.png');">
+                                    <div class="ui-preview">文物详情界面</div>
+                                </div>
+                                <p class="artifact-ui-description">展示金面具的详细信息，包括尺寸、重量、出土时间和历史意义。界面包含三维模型查看器，支持360度旋转和缩放功能。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="artifact-ui-item">
+                            <div class="artifact-ui-header">
+                                <h3 class="artifact-ui-name">青铜大立人像交互界面</h3>
+                            </div>
+                            <div class="artifact-ui-content">
+                                <div class="artifact-ui-image" style="background-image: url('images/bronze/2.png');">
+                                    <div class="ui-preview">文物信息面板</div>
+                                </div>
+                                <p class="artifact-ui-description">展示青铜大立人像的详细资料，包括高度、重量、出土背景和文化价值。提供对比功能，可与其他文物进行尺寸对比。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="artifact-ui-item">
+                            <div class="artifact-ui-header">
+                                <h3 class="artifact-ui-name">青铜神树交互界面</h3>
+                            </div>
+                            <div class="artifact-ui-content">
+                                <div class="artifact-ui-image" style="background-image: url('images/bronze/3.png');">
+                                    <div class="ui-preview">三维模型查看器</div>
+                                </div>
+                                <p class="artifact-ui-description">展示青铜神树的完整三维模型，支持分层查看功能，可以单独查看树干、树枝和装饰部件，了解其复杂结构。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="artifact-ui-item">
+                            <div class="artifact-ui-header">
+                                <h3 class="artifact-ui-name">青铜纵目面具交互界面</h3>
+                            </div>
+                            <div class="artifact-ui-content">
+                                <div class="artifact-ui-image" style="background-image: url('images/bronze/4.png');">
+                                    <div class="ui-preview">文物细节展示</div>
+                                </div>
+                                <p class="artifact-ui-description">展示青铜纵目面具的独特特征，包括夸张的眼睛造型和神秘微笑。提供历史背景解读和考古发现过程介绍。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏演示视频 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">游戏演示视频</h2>
+                
+                <div class="video-container">
+                    <!-- B站视频播放器 -->
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856877028816&bvid=BV1CciQBgE7k&cid=35252932391&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 视频托管于Bilibili平台 - 青铜的呼唤开发演示
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV1CciQBgE7k" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目成果 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目成果</h2>
+                <div class="section-content">
+                    <p>• 完成从现代美术馆到远古青铜博物馆的完整叙事流程设计</p>
+                    <p>• 实现六件三星堆文物的交互UI界面与信息展示系统</p>
+                    <p>• 开发第一人称自由探索系统，支持流畅的场景切换</p>
+                    <p>• 设计直观的文物信息界面与交互逻辑</p>
+                    <p>• 创建沉浸式的青铜文明场景，还原历史氛围</p>
+                    <p>• 获得数字媒体课程项目优秀评价</p>
+                </div>
+            </div>
+
+            <!-- 底部返回主页按钮 -->
+            <a href="index.html" class="bottom-back-btn">
+                返回主页 <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2025 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 视频加载完成提示
+        document.addEventListener('DOMContentLoaded', function() {
+            const bilibiliIframe = document.querySelector('.bilibili-video-container iframe');
+            
+            if (bilibiliIframe) {
+                bilibiliIframe.onload = function() {
+                    console.log('B站视频加载完成 - 青铜的呼唤演示视频');
+                    
+                    // 可以在这里添加一些加载完成的交互效果
+                    const videoContainer = document.querySelector('.bilibili-video-container');
+                    videoContainer.style.boxShadow = '0 0 20px rgba(157, 78, 221, 0.3)';
+                    
+                    // 添加B站图标特效
+                    const bilibiliIcon = document.querySelector('.fa-bilibili');
+                    if (bilibiliIcon) {
+                        bilibiliIcon.style.color = '#fb7299';
+                        bilibiliIcon.style.transition = 'color 0.5s';
+                    }
+                };
+                
+                bilibiliIframe.onerror = function() {
+                    console.warn('B站视频加载失败');
+                };
+            }
+            
+            // 为B站链接添加点击统计
+            const bilibiliLink = document.querySelector('.video-info-bar a[href*="bilibili.com"]');
+            if (bilibiliLink) {
+                bilibiliLink.addEventListener('click', function() {
+                    console.log('用户点击B站链接，前往青铜的呼唤视频页面');
+                    // 可以在这里添加统计代码
+                });
+            }
+            
+            // 为文物UI卡片添加悬停效果
+            const artifactUIItems = document.querySelectorAll('.artifact-ui-item');
+            artifactUIItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 模拟图片加载失败时的备选方案
+            const artifactImages = document.querySelectorAll('.artifact-ui-image');
+            artifactImages.forEach((img, index) => {
+                img.addEventListener('error', function() {
+                    console.log(`图片 ${index + 1}.png 加载失败，使用备选背景`);
+                    this.style.backgroundImage = 'linear-gradient(135deg, #9d4edd, #7b2cbf)';
+                    const previewText = this.querySelector('.ui-preview');
+                    if (previewText) {
+                        previewText.textContent = 'UI界面预览图';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
