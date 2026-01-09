@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房产App | 前端开发项目 | Luo Yuqiao 作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9d4edd;
+            --secondary-color: #7b2cbf;
+            --accent-color: #c77dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --gradient: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 返回按钮 - 页头样式 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 20px;
+            padding: 10px 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* 返回主页按钮 - 页尾样式（箭头在右边） */
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 40px 0 60px;
+            padding: 12px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            align-self: center;
+        }
+
+        .back-to-home i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .back-to-home:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 项目头部 - 新格式 */
+        .project-header-new {
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .project-title-main {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* 缩小副标题字体 */
+        .project-subtitle-main {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        /* 项目信息网格 */
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .info-column {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .info-subcontent {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 项目背景和介绍 */
+        .project-section-new {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .section-title-new {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title-new:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 游戏视频部分 */
+        .video-container {
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* B站视频容器 */
+        .bilibili-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .bilibili-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 视频信息栏 */
+        .video-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-info-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-info-bar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* 技术栈标签 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-tag {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* 功能特色网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(157, 78, 221, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            background: rgba(157, 78, 221, 0.12);
+            border-color: rgba(157, 78, 221, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: rgba(5, 5, 10, 0.95);
+            color: var(--text-secondary);
+            padding: 60px 0 25px;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(157, 78, 221, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* 项目成果列表 */
+        .achievements-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .achievements-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .achievements-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* AI创新亮点样式 */
+        .ai-highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title-main {
+                font-size: 2.8rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1.1rem;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 1.8rem;
+            }
+            
+            .project-section-new {
+                padding: 25px;
+            }
+            
+            .game-mechanics, .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-main {
+                font-size: 2.2rem;
+            }
+            
+            .project-subtitle-main {
+                font-size: 1rem;
+            }
+            
+            .section-title-new {
+                font-size: 1.6rem;
+            }
+            
+            .info-label {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tags {
+                gap: 10px;
+            }
+            
+            .tech-tag {
+                padding: 6px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .feature-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <!-- 项目头部 - 新格式 -->
+        <div class="project-header-new">
+            <h1 class="project-title-main">房产App - 贝壳找房模拟项目</h1>
+            <h2 class="project-subtitle-main">REAL ESTATE APP - BEIKE PRACTICE PROJECT</h2>
+            
+            <!-- 项目信息网格 -->
+            <div class="project-info-grid">
+                <div class="info-column">
+                    <div class="info-label">TIME</div>
+                    <div class="info-content">2024.03 – 2024.06</div>
+                    <div class="info-subcontent">3个月个人项目开发</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">TYPE</div>
+                    <div class="info-content">个人练手项目</div>
+                    <div class="info-subcontent">模拟贝壳找房的前端应用</div>
+                </div>
+                
+                <div class="info-column">
+                    <div class="info-label">ROLE</div>
+                    <div class="info-content">独立开发者</div>
+                    <div class="info-subcontent">全栈开发与UI/UX设计</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目内容 -->
+        <div class="project-content">
+            <!-- 项目背景 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目背景</h2>
+                <div class="section-content">
+                    <p>这是一个个人练手项目，旨在模拟贝壳找房App的核心功能与用户体验。通过这个项目，我深入研究了现代房产交易平台的UI/UX设计模式，并实践了复杂前端应用的开发流程。</p>
+                    <p>项目的创新点在于融合了<span class="ai-highlight">AI聊天</span>和<span class="ai-highlight">AI绘画</span>等前沿技术。我设计了智能对话系统，能够理解用户关于房源的复杂查询并提供精准回答，同时开发了AI绘图功能，可根据用户描述自动生成房屋装修效果图。这些AI功能的加入不仅提升了应用的智能化水平，也让我深入探索了AI技术在前端应用中的集成方法。</p>
+                    <p>作为个人项目，我独立完成了从需求分析到界面实现的全过程，特别注重AI功能与房产应用场景的深度结合，探索如何通过技术创新提升用户体验。</p>
+                </div>
+            </div>
+
+            <!-- 项目介绍 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目介绍</h2>
+                <div class="section-content">
+                    <p>这个房产App是一个模拟贝壳找房的个人练手项目，完全由我独立开发完成。项目涵盖了二手房、新房、租房等主要房产交易功能，并创新性地加入了<span class="ai-highlight">AI聊天</span>和<span class="ai-highlight">AI绘图</span>等智能功能。</p>
+                    <p>在<span class="ai-highlight">AI聊天</span>方面，我开发了一套智能对话系统，能够理解用户的自然语言查询，如"帮我找一套三室一厅、靠近地铁、价格在300万以内的房子"，并给出精准的房源推荐。该系统还能回答关于房产政策、贷款计算、交易流程等各种问题，提供全天候的智能咨询服务。</p>
+                    <p>在<span class="ai-highlight">AI绘图</span>方面，我实现了户型图生成和装修效果预览功能。用户只需简单描述房屋参数，系统就能自动生成对应的户型图，并进一步根据用户选择的装修风格生成逼真的效果图。这一功能让用户能够在签约前可视化房屋的改造潜力，大大提升了决策效率。</p>
+                    <p>通过这个项目，我不仅掌握了复杂前端应用的开发流程，还深入理解了AI技术与传统房产应用的结合点，为未来参与实际项目积累了宝贵的创新经验。</p>
+                </div>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">小程序开发</span>
+                    <span class="tech-tag">UI/UX设计</span>
+                    <span class="tech-tag">AI集成</span>
+                    <span class="tech-tag">组件化开发</span>
+                </div>
+            </div>
+
+            <!-- 核心功能特色 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">核心功能特色</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="feature-title">房产信息展示</h3>
+                        <p class="feature-description">
+                            模拟贝壳找房的房源展示界面，包括二手房、新房、租房等分类，支持图片轮播、价格展示、户型信息等。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">AI智能聊天</h3>
+                        <p class="feature-description">
+                            创新性集成AI聊天功能，模拟房产客服，可以理解自然语言查询并给出精准回答，提供24小时智能咨询服务。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="feature-title">AI户型图生成</h3>
+                        <p class="feature-description">
+                            基于用户描述的房屋参数，自动生成户型图与装修效果图，帮助用户可视化空间布局与设计可能性。
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="feature-title">智能房源搜索</h3>
+                        <p class="feature-description">
+                            支持多条件筛选搜索，包括价格、面积、户型、地理位置等，提供精准的房源匹配与推荐。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目演示视频 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目演示视频</h2>
+                
+                <div class="video-container">
+                    <!-- B站视频播放器 -->
+                    <div class="video-wrapper">
+                        <div class="bilibili-video-container">
+                            <iframe 
+                                src="//player.bilibili.com/player.html?isOutside=true&aid=115856927361337&bvid=BV1kwiQBzEnK&cid=35253127401&p=1"
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true"
+                                sandbox="allow-scripts allow-same-origin allow-popups"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- 视频信息栏 -->
+                    <div class="video-info-bar">
+                        <div>
+                            <i class="fab fa-bilibili"></i> 视频托管于Bilibili平台 - 房产App开发演示
+                        </div>
+                        <a href="https://www.bilibili.com/video/BV1kwiQBzEnK" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 在B站打开
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 开发收获 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">开发收获</h2>
+                <div class="section-content">
+                    <p>通过这个个人练手项目，我获得了以下宝贵的开发经验：</p>
+                    <p>1. <strong><span class="ai-highlight">AI技术的前端集成实践</span></strong>：掌握了如何将AI聊天和AI绘图功能集成到前端应用中，理解了AI接口的调用、数据处理和结果展示的全流程。</p>
+                    <p>2. <strong>复杂前端应用的架构设计</strong>：学习了如何组织大型前端项目的代码结构，实现组件复用和状态管理。</p>
+                    <p>3. <strong>创新功能与业务场景结合</strong>：探索了如何将<span class="ai-highlight">AI聊天</span>和<span class="ai-highlight">AI绘图</span>等创新功能与传统房产应用结合，解决实际用户痛点。</p>
+                    <p>4. <strong>模拟真实产品的开发流程</strong>：通过模拟贝壳找房这样的成熟产品，了解了商业化应用的产品逻辑和用户需求。</p>
+                    <p>5. <strong>独立解决问题的能力</strong>：作为个人项目，我独立解决了开发过程中遇到的各种技术难题，特别是AI功能集成方面的挑战，提升了问题解决能力。</p>
+                </div>
+            </div>
+
+            <!-- 项目成果 -->
+            <div class="project-section-new">
+                <h2 class="section-title-new">项目成果</h2>
+                <div class="section-content achievements-list">
+                    <li>独立完成房产App的完整前端开发，包含40+个交互页面</li>
+                    <li>创新性实现了<span class="ai-highlight">AI聊天助手</span>与<span class="ai-highlight">AI户型图生成</span>等智能功能</li>
+                    <li>优化页面加载性能，首屏加载时间控制在2秒以内</li>
+                    <li>设计并实现了一套完整的UI组件库，提高开发效率</li>
+                    <li>通过项目实践，掌握了现代前端开发与AI集成的核心技术栈</li>
+                    <li>探索了AI技术在房产应用中的创新应用场景</li>
+                    <li>积累了独立开发复杂前端应用的经验与信心</li>
+                </div>
+            </div>
+            
+            <!-- 返回主页按钮（页尾） -->
+            <div style="display: flex; justify-content: center;">
+                <a href="index.html" class="back-to-home">
+                    返回主页 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="mailto:luo.yuqiao@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2024 LUO YUQIAO. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script>
+        // 视频加载完成提示
+        document.addEventListener('DOMContentLoaded', function() {
+            const bilibiliIframe = document.querySelector('.bilibili-video-container iframe');
+            
+            if (bilibiliIframe) {
+                bilibiliIframe.onload = function() {
+                    console.log('B站视频加载完成 - 房产App演示视频');
+                    
+                    // 可以在这里添加一些加载完成的交互效果
+                    const videoContainer = document.querySelector('.bilibili-video-container');
+                    videoContainer.style.boxShadow = '0 0 20px rgba(157, 78, 221, 0.3)';
+                    
+                    // 添加B站图标特效
+                    const bilibiliIcon = document.querySelector('.fa-bilibili');
+                    if (bilibiliIcon) {
+                        bilibiliIcon.style.color = '#fb7299';
+                        bilibiliIcon.style.transition = 'color 0.5s';
+                    }
+                };
+                
+                bilibiliIframe.onerror = function() {
+                    console.warn('B站视频加载失败');
+                };
+            }
+            
+            // 为B站链接添加点击统计
+            const bilibiliLink = document.querySelector('.video-info-bar a[href*="bilibili.com"]');
+            if (bilibiliLink) {
+                bilibiliLink.addEventListener('click', function() {
+                    console.log('用户点击B站链接，前往房产App演示视频页面');
+                    // 可以在这里添加统计代码
+                });
+            }
+            
+            // 为功能卡片添加悬停效果
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2)';
+                        icon.style.transition = 'transform 0.3s';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // AI高亮词效果
+            const aiHighlights = document.querySelectorAll('.ai-highlight');
+            aiHighlights.forEach(highlight => {
+                highlight.addEventListener('mouseenter', function() {
+                    this.style.textShadow = '0 0 10px rgba(157, 78, 221, 0.7)';
+                    this.style.transition = 'text-shadow 0.3s';
+                });
+                
+                highlight.addEventListener('mouseleave', function() {
+                    this.style.textShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
